@@ -130,7 +130,7 @@ public class Registro extends AppCompatActivity {
                     @Override// Se añaden los datos del reg con ÉXITO
                     public void onSuccess(Void aVoid) {
                         alerta.dismiss();
-                        Toast.makeText(Registro.this, "Cuenta creada con éxito...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registro.this, "Cuenta creada con éxito", Toast.LENGTH_SHORT).show();
                         // Va al listado porque la cuenta ya ha sido creada, no entra al Login
                         startActivity(new Intent(Registro.this, Listado.class));
                         finish();

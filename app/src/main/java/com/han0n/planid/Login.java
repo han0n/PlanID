@@ -1,22 +1,43 @@
 package com.han0n.planid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.han0n.planid.databinding.ActivityLoginBinding;
 
 public class Login extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
+    private ProgressDialog alerta;
+
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.LaunchScreen);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().hide(); // Oculta la toolbar_actionbar al inicio de la App
+
+        //INICIALIZACIÓN de FirebaseAuth
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        alerta = new ProgressDialog(this);
+        alerta.setTitle("Por favor, espere");
+        alerta.setCanceledOnTouchOutside(false);
 
         //ACCIÓN del texto txtReg
         binding.txtReg.setOnClickListener(new View.OnClickListener() {
@@ -25,5 +46,52 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, Registro.class));
             }
         });
+
+        //ACCIÓN del Botón de LOGIN
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validarDatos();
+            }
+        });
+    }
+
+    /* VALIDA los datos antes del LOGIN */
+    private String email="", pswd="";
+    private void validarDatos() {
+
+        email = binding.txtEmail.getText().toString().trim();
+        pswd = binding.txtPswd.getText().toString().trim();
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            Toast.makeText(this, "No se ha ingresado un e-mail válido", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(pswd)){
+            Toast.makeText(this, "No se ha ingresado la contraseña", Toast.LENGTH_SHORT).show();
+        }
+        else{// Los datos se han validado
+            loginCuenta();
+        }
+        
+    }
+
+    private void loginCuenta() {
+        alerta.setMessage("Obteniendo acceso");
+        alerta.show();// Hasta que no termina de crear cuenta no se cierra
+
+        firebaseAuth.signInWithEmailAndPassword(email, pswd)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        startActivity(new Intent(Login.this, Listado.class));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override// NO se ha loggrado hacer LOGIN
+                    public void onFailure(Exception e) {
+                        alerta.dismiss();
+                        Toast.makeText(Login.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }
