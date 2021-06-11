@@ -13,10 +13,21 @@
         android:layout_height="230dp">
 
         <ImageView
+            android:id="@+id/logo"
             android:layout_width="120dp"
-            android:layout_height="119dp"
+            android:layout_height="120dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/pencil" />
+            android:background="@drawable/stamp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/logo"
+            android:gravity="center"
+            android:text="identifícate"
+            android:fontFamily="monospace"
+            android:textSize="26sp"/>
+
     </RelativeLayout>
 
 
@@ -35,7 +46,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/campoEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
                 <EditText
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
@@ -52,7 +64,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 android:layout_below="@+id/campoEmail"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
                 <EditText
                     android:id="@+id/txtPswd"
                     android:layout_width="match_parent"
@@ -66,20 +78,20 @@
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_below="@+id/campoPswd"
                 android:layout_marginTop="20dp"
                 android:text="Entrar" />
 
             <!--Para el registro de un nuevo usuario-->
             <TextView
-                android:id="@+id/nuevoUsuario"
+                android:id="@+id/txtReg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/btnLogin"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="¿Eres nuevo? Registrate"/>
+                android:text="¿Eres nuevo? Regístrate"/>
 
         </RelativeLayout>
     </ScrollView>

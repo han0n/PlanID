@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "797372515912",
-    "project_id": "planid-db",
-    "storage_bucket": "planid-db.appspot.com"
+    "project_number": "315978535349",
+    "project_id": "planid-bd",
+    "storage_bucket": "planid-bd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:797372515912:android:3b94c87fcc0300ff75fa7d",
+        "mobilesdk_app_id": "1:315978535349:android:48905cd17ecfd95b4589fc",
         "android_client_info": {
           "package_name": "com.han0n.planid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "797372515912-ck5gur93uv4o1jj993d3cuo6hsnlcl6n.apps.googleusercontent.com",
+          "client_id": "315978535349-iudjm86reeojcfpcjj743l7f3odj26qo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.han0n.planid",
-            "certificate_hash": "aa87d38b2dde4613a303db810828f59dfde978de"
+            "certificate_hash": "a8aa34fb869265f7f4f5fa390399595ac8c57c6b"
           }
         },
         {
-          "client_id": "797372515912-r46a66fst38scmbn57meb6ujgte65vqe.apps.googleusercontent.com",
+          "client_id": "315978535349-tbcf6d8dtf82dkuj0bqvaovcaoehhqll.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBWfve4t_JmYsXBs3hAtjk2RhI0yr75UUE"
+          "current_key": "AIzaSyAxBAVSq42Bz7A3HE3_ia7UjL9K_IUdmOw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "797372515912-r46a66fst38scmbn57meb6ujgte65vqe.apps.googleusercontent.com",
+              "client_id": "315978535349-tbcf6d8dtf82dkuj0bqvaovcaoehhqll.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
