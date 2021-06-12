@@ -11,10 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanID">
-        <activity android:name=".Listado"></activity>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".Listado" />
         <activity android:name=".Registro" />
-        <activity android:name=".Login"
-            android:theme="@style/LaunchScreen"> <!--Pantalla con el logo de la App-->
+        <activity
+            android:name=".Plan"
+            android:theme="@style/LaunchScreen"> <!-- Pantalla con el logo de la App -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

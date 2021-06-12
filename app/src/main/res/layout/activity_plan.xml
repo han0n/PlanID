@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registro"
-    android:background="@color/fondo">
+    tools:context=".Plan"
+    android:background="@color/primario_variante">
 
 
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="40dp">
 
         <!--Botón para retroceder al Login-->
         <ImageButton
@@ -23,31 +23,16 @@
             android:layout_margin="10dp"
             android:padding="5dp" />
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/binder" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/logo"
-            android:gravity="center"
-            android:text="regístrate"
-            android:fontFamily="monospace"
-            android:textSize="26sp"/>
-
     </RelativeLayout>
 
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_below="@+id/cabecera">
+        android:layout_below="@+id/cabecera"
+        android:gravity="center">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,13 +44,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_person">
+                app:startIconDrawable="@drawable/ic_create">
                 <EditText
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/cardview_shadow_end_color"
-                    android:hint="nombre"
+                    android:hint="actividad"
                     android:inputType="textPersonName"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -77,14 +62,18 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/campoNombre"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_email">
+                app:startIconDrawable="@drawable/ic_gesture">
                 <EditText
-                    android:id="@+id/txtEmail"
-                    android:layout_width="match_parent"
+                    android:id="@+id/txtDesc"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/cardview_shadow_end_color"
-                    android:hint="e-mail"
-                    android:inputType="textEmailAddress"/>
+                    android:hint="descripción"
+                    android:inputType="textMultiLine"
+                    android:minHeight="80sp"
+                    android:maxHeight="80sp"
+                    android:maxLength="48"/>
+                <!--android:ellipsize servirá después para mostrar textos tan largos en una lista-->
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,49 +85,21 @@
                 app:passwordToggleEnabled="true"
                 android:layout_below="@+id/campoEmail"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_lock">
+                android:layout_marginBottom="90dp"
+                app:startIconDrawable="@drawable/ic_lock"
+                android:focusable="false">
                 <EditText
                     android:id="@+id/txtPswd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/cardview_shadow_end_color"
                     android:hint="contraseña"
-                    android:inputType="textPassword"/>
-
+                    android:inputType="time"/>
             </com.google.android.material.textfield.TextInputLayout>
-
-            <!--Campo de la repetición de la contraseña-->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/campoPswdRe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                android:layout_below="@+id/campoPswd"
-                android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_lock">
-                <EditText
-                    android:id="@+id/txtPswdRe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
-                    android:hint="repita la contraseña"
-                    android:inputType="textPassword"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!--Botón de Login-->
-            <Button
-                android:id="@+id/btnReg"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_below="@+id/campoPswdRe"
-                android:layout_marginTop="20dp"
-                android:text="Crear cuenta"
-                android:focusable="false"/>
 
 
         </RelativeLayout>
-    </ScrollView>
+    </LinearLayout>
 
 
 

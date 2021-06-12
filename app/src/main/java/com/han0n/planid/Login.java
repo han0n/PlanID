@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
         setTheme(R.style.LaunchScreen);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().hide(); // Oculta la toolbar_actionbar al inicio de la App
+        //getSupportActionBar().hide(); // Oculta la toolbar_actionbar al inicio de la App
 
         //INICIALIZACIÓN de FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance();

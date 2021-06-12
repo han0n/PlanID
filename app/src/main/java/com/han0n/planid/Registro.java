@@ -34,7 +34,7 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().hide(); // Oculta la toolbar_actionbar
+        //getSupportActionBar().hide(); // Oculta la toolbar_actionbar
 
         //INICIALIZACIÓN de FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance();
