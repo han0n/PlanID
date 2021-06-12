@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.han0n.planid.databinding.ActivityLoginBinding;
 
 public class Login extends AppCompatActivity {
@@ -84,6 +85,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         startActivity(new Intent(Login.this, Listado.class));
+                        finish();// Cuando entra al listado finaliza esta Activity
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -94,4 +96,16 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        /* CHECKEO de si hay una Cuenta ya Logeada y va directo a su Listado */
+        FirebaseUser cuenta = FirebaseAuth.getInstance().getCurrentUser();
+        if (cuenta != null ) {
+            startActivity(new Intent(Login.this, Listado.class));
+            finish();// Cuando entra al Listado finaliza esta Activity
+        }
+    }
+
 }

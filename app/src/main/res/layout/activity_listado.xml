@@ -8,28 +8,45 @@
     android:background="@color/primario_variante">
 
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_height="70dp"
+    <RelativeLayout
+        android:id="@+id/cabecera"
         android:layout_width="match_parent"
-        android:background="@color/primario_variante">
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:padding="5dp">
 
+        <!--Botón para salir del usuario actual-->
+        <ImageButton
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_exit"
+            android:background="@color/transparente"
+            android:layout_alignParentRight="true" />
+
+        <!--Muestra el texto de la cabecera-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true" >
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Actividades de "
+                android:fontFamily="monospace"
+                android:textSize="20sp"/>
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
+                android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_height="match_parent"
+                android:fontFamily="monospace"
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
-    </com.google.android.material.appbar.MaterialToolbar>
+    </RelativeLayout>
 
 </RelativeLayout>
