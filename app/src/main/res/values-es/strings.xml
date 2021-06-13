@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nueva_cuenta">¿Eres nuevo? <b>Regístrate</b></string>
+    <string name="pswd">contraseña</string>
+    <string name="nombre">name</string>
+    <string name="paswd_re">repita la contraseña</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="login">Acceder</string>
+    <string name="login_cabecera"><b>identifícate</b></string>
+    <string name="signup_cabecera"><b>regístrate</b></string>
+    <string name="listado_cabecera"><b>¡Anótalo </b></string>
+</resources>

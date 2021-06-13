@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registro"
-    android:background="@color/fondo">
+    android:backgroundTintMode="multiply"
+    android:backgroundTint="@color/fondo"
+    android:background="@drawable/honeycomb_repeat">
 
 
     <RelativeLayout
@@ -28,16 +30,22 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/binder" />
+            android:background="@drawable/clip" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/logo"
+            android:layout_marginTop="-2dp"
+            android:fontFamily="serif-monospace"
             android:gravity="center"
-            android:text="regístrate"
-            android:fontFamily="monospace"
-            android:textSize="26sp"/>
+            android:text="@string/signup_cabecera"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/text_shadow"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
     </RelativeLayout>
 
@@ -65,8 +73,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/cardview_shadow_end_color"
-                    android:hint="nombre"
-                    android:inputType="textPersonName"/>
+                    android:hint="@string/nombre"
+                    android:inputType="textPersonName"
+                    android:maxLength="12"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/cardview_shadow_end_color"
-                    android:hint="contraseña"
+                    android:hint="@string/pswd"
                     android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/cardview_shadow_end_color"
-                    android:hint="repita la contraseña"
+                    android:hint="@string/paswd_re"
                     android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -133,8 +142,9 @@
                 android:layout_height="60dp"
                 android:layout_below="@+id/campoPswdRe"
                 android:layout_marginTop="20dp"
-                android:text="Crear cuenta"
-                android:focusable="false"/>
+                android:text="@string/crear_cuenta"
+                android:focusable="false"
+                android:backgroundTint="@color/cardview_shadow_end_color"/>
 
 
         </RelativeLayout>

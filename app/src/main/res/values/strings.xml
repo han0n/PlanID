@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">PlanID</string>
+    <string name="app_name" translatable="false">PlanID</string>
+    <string name="nueva_cuenta">New user? <b>Sign-Up</b></string>
+    <string name="pswd">password</string>
+    <string name="nombre">name</string>
+    <string name="paswd_re">repeat password</string>
+    <string name="crear_cuenta">Create Account</string>
+    <string name="login">Enter</string>
+    <string name="login_cabecera"><b>log-in</b></string>
+    <string name="signup_cabecera"><b>sign-up</b></string>
+    <string name="listado_cabecera"><b>Listado de </b></string>
 </resources>

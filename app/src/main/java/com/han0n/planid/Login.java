@@ -27,8 +27,9 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setTheme(R.style.LaunchScreen);
+        super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_PlanID);// Para que no se vea el LaunchScreen de fondo
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //getSupportActionBar().hide(); // Oculta la toolbar_actionbar al inicio de la App

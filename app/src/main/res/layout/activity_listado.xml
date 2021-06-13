@@ -5,9 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Listado"
-    android:background="@color/primario_variante">
+    android:backgroundTintMode="screen"
+    android:backgroundTint="@color/primario_variante"
+    android:background="@drawable/honeycomb_dark_repeat">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/primario_variante"/>
 
+    <!--Cabecera de la Cuenta-->
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
@@ -26,27 +33,50 @@
 
         <!--Muestra el texto de la cabecera-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Actividades de "
-                android:fontFamily="monospace"
-                android:textSize="20sp"/>
+                android:text="@string/listado_cabecera"
+                android:fontFamily="serif-monospace"
+                android:textSize="26sp"
+                android:gravity="bottom"
+                android:textColor="@color/white"
+                android:shadowColor="@color/text_shadow"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"/>
 
             <TextView
                 android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="monospace"
-                android:textSize="20sp"/>
+                android:fontFamily="serif-monospace"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:gravity="bottom"
+                android:textColor="@color/white"
+                android:shadowColor="@color/text_shadow"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"/>
 
         </LinearLayout>
 
     </RelativeLayout>
+
+    <!--Botón que simula una entrada de la lista para nuevo Plan-->
+    <ImageButton
+        android:id="@+id/btnCrear"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/fondo"
+        android:src="@drawable/ic_add"
+        android:layout_height="60dp"
+        android:layout_below="@+id/cabecera"
+        android:layout_marginTop="20dp"
+        android:focusable="false"/>
 
 </RelativeLayout>

@@ -42,7 +42,7 @@ public class Listado extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("", "Nombre: " + dataSnapshot.child("nombre").getValue());
-                String nombre = String.valueOf(dataSnapshot.child("nombre").getValue());
+                String nombre = String.valueOf(dataSnapshot.child("nombre").getValue())+"!";
                 binding.txtNombre.setText(nombre);
             }
             @Override
