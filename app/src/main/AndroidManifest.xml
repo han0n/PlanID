@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanID">
         <activity android:name=".PlanEdit"></activity>
-        <activity android:name=".Listado" />
+        <activity android:name=".Listado"
+            android:launchMode="singleInstance"/><!--Solo habrá una instancia al crear nota-->
         <activity android:name=".Registro" />
         <activity
             android:name=".Login"

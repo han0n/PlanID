@@ -142,6 +142,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@+id/campoPswdRe"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/text_shadow"
                 android:text="@string/crear_cuenta"
                 android:focusable="false"
                 android:backgroundTint="@color/nulo"/>

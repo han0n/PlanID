@@ -80,7 +80,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/ic_create">
                 <EditText
-                    android:id="@+id/txtNombre"
+                    android:id="@+id/txtActividad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/nulo"
@@ -142,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
+                    android:textColor="@color/text_shadow"
                     android:text="Poner Alarma"
                     android:focusable="false"
                     android:visibility="invisible"

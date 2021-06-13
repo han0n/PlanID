@@ -9,13 +9,21 @@
     android:backgroundTint="@color/primario_variante"
     android:background="@drawable/honeycomb_dark_repeat">
 
+    <!--Cabecera de la Cuenta-->
+    <!--ToolBar-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/primario_variante">
     </RelativeLayout>
-
-    <!--Cabecera de la Cuenta-->
+    <!--Sombra del ToolBar-->
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/cabecera_sombra" />
+    <!--Contenido del ToolBar-->
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
@@ -33,51 +41,73 @@
             android:layout_alignParentRight="true" />
 
         <!--Muestra el texto de la cabecera-->
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
+            android:gravity="center">
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/listado_cabecera"
-                android:fontFamily="serif-monospace"
-                android:textSize="26sp"
-                android:gravity="bottom"
-                android:textColor="@color/white"
-                android:shadowColor="@color/text_shadow"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"/>
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtNombre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="serif-monospace"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:gravity="bottom"
-                android:textColor="@color/white"
-                android:shadowColor="@color/text_shadow"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/listado_cabecera"
+                    android:textSize="26sp"
+                    android:gravity="bottom"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:textColor="@color/browser_actions_bg_grey"
+                    android:shadowColor="@color/primario"
+                    android:shadowDx = "-2"
+                    android:shadowDy = "-2"
+                    android:shadowRadius = "1"/>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:gravity="bottom"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:textColor="@color/browser_actions_bg_grey"
+                    android:shadowColor="@color/primario"
+                    android:shadowDx = "-2"
+                    android:shadowDy = "-2"
+                    android:shadowRadius = "1"/>
+
+            </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
-    <!--Botón que simula una entrada de la lista para nuevo Plan-->
-    <ImageButton
-        android:id="@+id/btnCrear"
+
+    <!--Notas-->
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:backgroundTint="@color/fondo"
-        android:src="@drawable/ic_add"
-        android:layout_height="60dp"
-        android:layout_below="@+id/cabecera"
-        android:layout_marginTop="20dp"
-        android:focusable="false"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/cabecera"
+        tools:listitem="@layout/cardview_nota"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <!--Botón que simula una entrada de la lista para nuevo Plan-->
+    <LinearLayout
+        android:id="@+id/pie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCrear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/paper_clip"
+            android:layout_margin="15dp" />
+    </LinearLayout>
+
 
 </RelativeLayout>
