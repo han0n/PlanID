@@ -85,11 +85,12 @@
                     android:layout_height="wrap_content"
                     android:background="@color/nulo"
                     android:hint="actividad"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName|textCapSentences"
+                    android:maxLength="33"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--Campo del email-->
+            <!--Campo de la descripcion-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/campoDescripcion"
                 android:layout_width="match_parent"
@@ -103,10 +104,10 @@
                     android:layout_height="wrap_content"
                     android:background="@color/nulo"
                     android:hint="descripción"
-                    android:inputType="textMultiLine"
+                    android:inputType="textCapSentences|textMultiLine"
                     android:minHeight="80sp"
                     android:maxHeight="80sp"
-                    android:maxLength="48"/>
+                    android:maxLength="66"/>
                 <!--android:ellipsize servirá después para mostrar textos tan largos en una lista-->
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -124,8 +125,7 @@
                     android:layout_width="120sp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/campoDescripcion"
-
-                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconDrawable="@drawable/ic_alarm"
                     android:clickable="true">
 
                     <EditText
@@ -137,6 +137,7 @@
                         android:editable="false"
                         android:focusable="false"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:id="@+id/btnPonerAlarma"
                     android:layout_width="match_parent"

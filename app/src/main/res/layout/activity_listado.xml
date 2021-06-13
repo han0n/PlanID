@@ -9,27 +9,23 @@
     android:backgroundTint="@color/primario_variante"
     android:background="@drawable/honeycomb_dark_repeat">
 
-    <!--Cabecera de la Cuenta-->
-    <!--ToolBar-->
+    <!--Cabecera de la Cuenta AKA ToolBar-->
+    <!--Relleno del ToolBar-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/primario_variante">
     </RelativeLayout>
-    <!--Sombra del ToolBar-->
-    <View
-        android:id="@+id/toolbar_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/cabecera_sombra" />
     <!--Contenido del ToolBar-->
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:padding="5dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="5dp"
+        android:paddingBottom="0dp">
 
         <!--Botón para salir del usuario actual-->
         <ImageButton
@@ -43,12 +39,12 @@
         <!--Muestra el texto de la cabecera-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_centerInParent="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,7 +54,7 @@
                     android:gravity="bottom"
                     android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/browser_actions_bg_grey"
-                    android:shadowColor="@color/primario"
+                    android:shadowColor="@color/text_shadow"
                     android:shadowDx = "-2"
                     android:shadowDy = "-2"
                     android:shadowRadius = "1"/>
@@ -72,7 +68,7 @@
                     android:gravity="bottom"
                     android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/browser_actions_bg_grey"
-                    android:shadowColor="@color/primario"
+                    android:shadowColor="@color/text_shadow"
                     android:shadowDx = "-2"
                     android:shadowDy = "-2"
                     android:shadowRadius = "1"/>
@@ -82,29 +78,39 @@
 
     </RelativeLayout>
 
-
     <!--Notas-->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recNotas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="4dp"
         android:layout_below="@id/cabecera"
         tools:listitem="@layout/cardview_nota"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <!--Sombra del ToolBar-->
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/cabecera_sombra" />
+
     <!--Botón que simula una entrada de la lista para nuevo Plan-->
     <LinearLayout
         android:id="@+id/pie"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:gravity="center">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnCrear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
             android:src="@drawable/paper_clip"
             android:layout_margin="15dp" />
     </LinearLayout>

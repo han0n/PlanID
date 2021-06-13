@@ -99,8 +99,8 @@ public class PlanEdit extends AppCompatActivity {
     }// Método onCreate
 
     private String actividad="", descripcion="";
-    private int hora=0, minuto=0;
-    private void validarDatos() {
+    private int hora=0, minuto=1;// Para cuando se ponga a las 00:01 no se muestre después
+    private void validarDatos() {// pues indicará que no se ha guardado valor para la hora
 
         actividad = binding.txtActividad.getText().toString().trim();
         descripcion = binding.txtDesc.getText().toString().trim();
