@@ -2,6 +2,8 @@ package com.han0n.planid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,12 +37,17 @@ public class Listado extends AppCompatActivity {
     private ArrayList<NotaMDL> notaArrayList;
     private NotaADPT notaADPT;
     private String cuentaUid;
+
+    //Para eliminar con el swipe
+    NotaMDL modelo; /* Reutilizado | Tambien en cargarNotas(); */
+    DatabaseReference ref; /* Reutilizado | Tambien en cargarNotas(); */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityListadoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //getSupportActionBar().hide(); // Oculta la toolbar_actionbar
+        cargarNotas();
 
 
         cuentaUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -72,14 +80,33 @@ public class Listado extends AppCompatActivity {
             }
         });
 
-        cargarNotas();
+        // DESLIZAR para borrar
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT |ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                // Eliminado de la vista + recogiendo del Modelo NotaMDL:
+                NotaMDL notaSwipeada = notaArrayList.remove(viewHolder.getAdapterPosition());
+                notaADPT.notifyDataSetChanged();
+                // Eliminado de la DB:
+                long id = notaSwipeada.getId(); //OBTENEMOS EL id del elemento que se desliza
+                //Log.d("AAA", ""+id);
+                ref.child(String.valueOf(id)) //INICIALIZADO Een cargarNotas();
+                        .removeValue(); // Sin comprobación de si se elimina BIEN
+            }
+        };
 
+        // Instanciamiento del swipe directamente en el onCreate
+        new ItemTouchHelper(callback).attachToRecyclerView(binding.recNotas);
     }
 
     private void cargarNotas(){
         notaArrayList = new ArrayList<>();
         // Aquí las coge todas
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("notas");
+        ref = FirebaseDatabase.getInstance().getReference("notas");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,7 +118,7 @@ public class Listado extends AppCompatActivity {
                     /* Si el uid de las notas es igual al de la Cuenta Actual (cuentaUid)*/
                     if(uid.equals(cuentaUid)){
                         // OBTIENE sus notas:
-                        NotaMDL modelo = ds.getValue(NotaMDL.class);
+                        modelo = ds.getValue(NotaMDL.class);
                         // AGREGA sus notas:
                         notaArrayList.add(modelo);
                     }

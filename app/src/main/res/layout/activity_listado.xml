@@ -95,7 +95,7 @@
     <View
         android:id="@+id/toolbar_shadow"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="10dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/cabecera_sombra" />
 
@@ -112,7 +112,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/paper_clip"
-            android:layout_margin="15dp" />
+            app:maxImageSize="32dp"
+            app:borderWidth="0dp"
+            android:layout_margin="15dp"
+            android:backgroundTint="@color/primario_variante"/>
     </LinearLayout>
 
 

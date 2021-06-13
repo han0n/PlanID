@@ -9,7 +9,14 @@
     android:backgroundTint="@color/fondo"
     android:background="@drawable/project_paper_repeat">
 
+    <!--Sombra del ToolBar-->
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/cabecera_sombra" />
 
+    <!--Cabecera-->
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
@@ -86,7 +93,7 @@
                     android:background="@color/nulo"
                     android:hint="actividad"
                     android:inputType="textPersonName|textCapSentences"
-                    android:maxLength="33"/>
+                    android:maxLength="20"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,10 +111,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/nulo"
                     android:hint="descripción"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:minHeight="80sp"
-                    android:maxHeight="80sp"
-                    android:maxLength="66"/>
+                    android:inputType="textMultiLine|textPersonName"
+                    android:maxHeight="75sp"
+                    android:maxLength="40"/>
                 <!--android:ellipsize servirá después para mostrar textos tan largos en una lista-->
 
             </com.google.android.material.textfield.TextInputLayout>
