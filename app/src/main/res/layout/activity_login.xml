@@ -13,7 +13,7 @@
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="180dp">
 
         <ImageView
             android:id="@+id/logo"
@@ -61,7 +61,7 @@
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="e-mail"
                     android:inputType="textEmailAddress"/>
 
@@ -80,7 +80,7 @@
                     android:id="@+id/txtPswd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="@string/pswd"
                     android:inputType="textPassword"/>
 
@@ -95,7 +95,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/login"
                 android:focusable="false"
-                android:backgroundTint="@color/cardview_shadow_end_color"/>
+                android:backgroundTint="@color/nulo"/>
 
             <!--Para el registro de un nuevo usuario-->
             <TextView

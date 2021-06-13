@@ -5,34 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlanEdit"
-    android:background="@color/primario_variante">
+    android:backgroundTintMode="multiply"
+    android:backgroundTint="@color/fondo"
+    android:background="@drawable/project_paper_repeat">
 
 
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="180dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/paper_clip"/>
 
         <!--Botón para retroceder al Login-->
         <ImageButton
             android:id="@+id/btnAtras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            android:background="@color/transparente"
             android:layout_margin="10dp"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:src="@drawable/ic_back"
+            android:background="@color/nulo"/>
+
+        <!--Botón para guardar Plan-->
+        <ImageButton
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_done"
+            android:background="@color/nulo"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/logo"
+            android:gravity="center"
+            android:text="@string/plan_cabecera"
+            android:fontFamily="serif-monospace"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/text_shadow"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"/>
 
     </RelativeLayout>
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_below="@+id/cabecera"
-        android:gravity="center">
+        android:layout_below="@+id/cabecera">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -49,7 +83,7 @@
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="actividad"
                     android:inputType="textPersonName"/>
 
@@ -57,7 +91,7 @@
 
             <!--Campo del email-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/campoEmail"
+                android:id="@+id/campoDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/campoNombre"
@@ -67,7 +101,7 @@
                     android:id="@+id/txtDesc"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="descripción"
                     android:inputType="textMultiLine"
                     android:minHeight="80sp"
@@ -77,29 +111,48 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--Campo de la contraseña-->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/campoPswd"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                android:layout_below="@+id/campoEmail"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="90dp"
-                app:startIconDrawable="@drawable/ic_lock"
-                android:focusable="false">
-                <EditText
-                    android:id="@+id/txtPswd"
-                    android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/campoDescripcion"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <!--Campo de la alarma-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/campoAlarma"
+                    android:layout_width="120sp"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
-                    android:hint="contraseña"
-                    android:inputType="time"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_below="@+id/campoDescripcion"
+
+                    app:startIconDrawable="@drawable/ic_lock"
+                    android:clickable="true">
+
+                    <EditText
+                        android:id="@+id/txtAlarma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/nulo"
+                        android:hint="00 : 00"
+                        android:editable="false"
+                        android:focusable="false"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/btnPonerAlarma"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:text="Poner Alarma"
+                    android:focusable="false"
+                    android:visibility="invisible"
+                    android:backgroundTint="@color/nulo"/>
+
+            </LinearLayout>
+
 
 
         </RelativeLayout>
-    </LinearLayout>
+    </ScrollView>
 
 
 

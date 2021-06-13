@@ -48,7 +48,7 @@ public class Listado extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) { }
         });
-
+        // ACCIÓN del botón de CERRAR SESIÓN
         firebaseAuth = FirebaseAuth.getInstance();
         binding.btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +56,13 @@ public class Listado extends AppCompatActivity {
                 firebaseAuth.signOut();
                 startActivity(new Intent(Listado.this, Login.class));
                 finish();
+            }
+        });
+
+        binding.btnCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Listado.this, PlanEdit.class));
             }
         });
 

@@ -13,7 +13,7 @@
     <RelativeLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="180dp">
 
         <!--Botón para retroceder al Login-->
         <ImageButton
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back"
-            android:background="@color/transparente"
+            android:background="@color/nulo"
             android:layout_margin="10dp"
             android:padding="5dp" />
 
@@ -72,7 +72,7 @@
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="@string/nombre"
                     android:inputType="textPersonName"
                     android:maxLength="12"/>
@@ -91,7 +91,7 @@
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="e-mail"
                     android:inputType="textEmailAddress"/>
 
@@ -110,7 +110,7 @@
                     android:id="@+id/txtPswd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="@string/pswd"
                     android:inputType="textPassword"/>
 
@@ -129,7 +129,7 @@
                     android:id="@+id/txtPswdRe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/cardview_shadow_end_color"
+                    android:background="@color/nulo"
                     android:hint="@string/paswd_re"
                     android:inputType="textPassword"/>
 
@@ -144,7 +144,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/crear_cuenta"
                 android:focusable="false"
-                android:backgroundTint="@color/cardview_shadow_end_color"/>
+                android:backgroundTint="@color/nulo"/>
 
 
         </RelativeLayout>

@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primario">#455A64</color>
     <color name="primario_variante">#607D8B</color>
-    <color name="transparente">#00000000</color>
+    <color name="nulo">#00000000</color>
     <color name="fondo">#FFE082</color>
     <color name="fondo_variante">#FFA000</color>
     <color name="text_shadow">#7F000000</color>

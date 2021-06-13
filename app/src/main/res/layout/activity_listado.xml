@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/primario_variante"/>
+        android:background="@color/primario_variante">
+    </RelativeLayout>
 
     <!--Cabecera de la Cuenta-->
     <RelativeLayout
@@ -28,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_exit"
-            android:background="@color/transparente"
+            android:background="@color/nulo"
             android:layout_alignParentRight="true" />
 
         <!--Muestra el texto de la cabecera-->
