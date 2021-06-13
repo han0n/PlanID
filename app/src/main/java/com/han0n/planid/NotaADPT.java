@@ -22,10 +22,13 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
     private Context context;
     private ArrayList<NotaMDL> notaArrayList;
 
+    private RecycleViewClickInterface recycleViewClickInterface;
 
-    public NotaADPT(Context context, ArrayList<NotaMDL> notaArrayList) {
+
+    public NotaADPT(Context context, ArrayList<NotaMDL> notaArrayList, RecycleViewClickInterface recycleViewClickInterface) {
         this.context = context;
         this.notaArrayList = notaArrayList;
+        this.recycleViewClickInterface = recycleViewClickInterface;
     }
 
     /* Auto-implementados */
@@ -69,7 +72,7 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
     }
 
     /* La clase ViewHolder para hold UI views para cardview_nota.xml */
-    class HolderNota extends RecyclerView.ViewHolder{
+    class HolderNota extends RecyclerView.ViewHolder {
 
         //Las vistas de la UI para la cardview_nota.xml
         TextView vistaActividad;
@@ -82,6 +85,13 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
             vistaActividad = binding.vistaActividad;
             vistaDescripcion = binding.vistaDescripcion;
             vistaHora = binding.vistaHora;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recycleViewClickInterface.onItemClick(getAdapterPosition());
+                }
+            });
 
         }
     }

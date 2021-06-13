@@ -25,7 +25,7 @@ import com.han0n.planid.databinding.ActivityListadoBinding;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Listado extends AppCompatActivity {
+public class Listado extends AppCompatActivity implements RecycleViewClickInterface{
 
     private ActivityListadoBinding binding;
 
@@ -125,7 +125,7 @@ public class Listado extends AppCompatActivity {
 
                 }
                 // SETTEA el Adaptador
-                notaADPT = new NotaADPT(Listado.this, notaArrayList);
+                notaADPT = new NotaADPT(Listado.this, notaArrayList, Listado.this);
                 // SETTEAMOS al recycleview
                 binding.recNotas.setAdapter(notaADPT);
 
@@ -138,4 +138,21 @@ public class Listado extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Log.d("AAA", ""+position);
+        NotaMDL notaSeleccionada = notaArrayList.remove(position);
+        notaADPT.notifyDataSetChanged();
+        // Eliminado de la DB:
+        long id = notaSeleccionada.getId(); //OBTENEMOS EL id del elemento que se desliza
+        //Log.d("AAA", ""+id);
+        ref.child(String.valueOf(id)) //INICIALIZADO Een cargarNotas();
+                .removeValue(); // Sin comprobación de si se elimina BIEN
+
+    }
+
+    @Override
+    public void onLongItemClick(int position) {
+
+    }
 }
