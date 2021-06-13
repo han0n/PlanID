@@ -138,17 +138,18 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
         });
     }
 
+    /* ACCIÓN PARA EDITAR una Nota */
     @Override
     public void onItemClick(int position) {
-        Log.d("AAA", ""+position);
-        NotaMDL notaSeleccionada = notaArrayList.remove(position);
+        //Log.d("AAA", ""+position);
+        NotaMDL notaSeleccionada = notaArrayList.get(position);
         notaADPT.notifyDataSetChanged();
         // Eliminado de la DB:
-        long id = notaSeleccionada.getId(); //OBTENEMOS EL id del elemento que se desliza
-        //Log.d("AAA", ""+id);
-        ref.child(String.valueOf(id)) //INICIALIZADO Een cargarNotas();
-                .removeValue(); // Sin comprobación de si se elimina BIEN
-
+        long id = notaSeleccionada.getId(); //OBTENEMOS EL id del elemento que se clica
+        Intent intent = new Intent(this, PlanEdit.class);
+        intent.putExtra("planId", id);
+        startActivity(intent);
+        //Log.d("AAA", ""+id);// Comprueba que corresponde a la id de la BD
     }
 
     @Override

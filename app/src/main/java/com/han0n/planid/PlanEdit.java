@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -21,8 +22,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.han0n.planid.databinding.ActivityPlanBinding;
 
 import java.util.ArrayList;
@@ -37,15 +41,25 @@ public class PlanEdit extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
 
-    public PlanEdit() {
-    }
+    // Si viene del OnClick para editar el Plan:
+    private String planId;
+    private DatabaseReference ref;
+    private String hora_="", minuto_="";//**NO SETEA LA HORA**
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPlanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //getSupportActionBar().hide(); // Oculta la toolbar_actionbar
+
+        // Recuperamos la id si se viente de pulsar una Nota
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            long id = extras.getLong("planId");
+            planId = String.valueOf(id);
+            //Log.d("AAA", ""+planId);
+            editarPlan();
+        }
 
         //Para que al pulsar enter del teclado Android se cierre en el caso de Descripción
         EditText descripcion = findViewById(R.id.txtDesc);
@@ -78,9 +92,9 @@ public class PlanEdit extends AppCompatActivity {
                         String hMFormato = String.format("%02d : %02d", hora, minuto);
                         binding.campoAlarma.setHint(hMFormato);// Se setea al Hint del campo Alarma
                         picker = new MaterialTimePicker.Builder()// y al nuevo picker por si cambia
-                                        .setHour(hora)
-                                        .setMinute(minuto)
-                                        .build();
+                                .setHour(hora)
+                                .setMinute(minuto)
+                                .build();
                         binding.btnPonerAlarma.setVisibility(View.VISIBLE);
                     }
                 });
@@ -97,6 +111,37 @@ public class PlanEdit extends AppCompatActivity {
 
 
     }// Método onCreate
+
+    // Método para editar Plan: Carga los datos del plan y después lo elimina
+    private void editarPlan() {
+
+        ref = FirebaseDatabase.getInstance().getReference("notas");
+        ref.child(planId)
+            .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("ACTA", "" + dataSnapshot.child("actividad").getValue());
+                String actividad = "" + dataSnapshot.child("actividad").getValue();
+                String descripcion = "" + dataSnapshot.child("descripcion").getValue();
+                hora_ = "" + dataSnapshot.child("hora").getValue();
+                minuto_ = "" + dataSnapshot.child("minuto").getValue();
+
+                binding.txtActividad.setText(actividad);
+                binding.txtDesc.setText(descripcion);
+                //String hMFormato = String.format("%02s : %02s", hora_, minuto_);
+                //binding.campoAlarma.setHint(hMFormato);// Se setea al Hint del campo Alarma
+                picker = new MaterialTimePicker.Builder()// y al nuevo picker por si cambia
+                        .setHour(Integer.parseInt(hora_))
+                        .setMinute(Integer.parseInt(minuto_))
+                        .build();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+    }
 
     private String actividad="", descripcion="";
     private int hora=0, minuto=1;// Para cuando se ponga a las 00:01 no se muestre después
@@ -133,7 +178,11 @@ public class PlanEdit extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override// Si se añade sin problemas la nota...
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(PlanEdit.this, "Nota creada con éxito", Toast.LENGTH_SHORT).show();
+                        // Una vez asignamos los datos a los campos... Se elimina el id pasado
+                        ref.child(String.valueOf(planId)) //
+                                .removeValue(); // Sin comprobación de si se elimina BIEN
+
+                        Toast.makeText(PlanEdit.this, "Nota modificada con éxito", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(PlanEdit.this, Listado.class));
                         finish();
                     }
