@@ -10,4 +10,5 @@
     <string name="signup_cabecera"><b>sign-up</b></string>
     <string name="listado_cabecera"><b>Listado de </b></string>
     <string name="plan_cabecera">nueva nota</string>
+    <string name="editar_nota">editar nota</string>
 </resources>

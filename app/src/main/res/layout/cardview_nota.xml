@@ -20,7 +20,7 @@
             android:paddingLeft="10dp">
 
             <LinearLayout
-                android:layout_width="290dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_alignParentLeft="true">
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
                     android:text="Título de la nota"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:ellipsize="middle"
                     android:singleLine="true"/>
@@ -39,9 +39,10 @@
                 <TextView
                     android:id="@+id/vistaDescripcion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingRight="12.5dp"
                     android:text="Descripción de la nota\n..."
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -49,11 +50,13 @@
                 android:id="@+id/vistaHora"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingRight="10dp"
+                android:paddingRight="12.5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
                 android:layout_alignParentRight="true"
                 android:text="00 : 00"
-                android:textSize="26sp"
-                android:gravity="center|right"/>
+                android:textSize="20sp"
+                android:gravity="top|right"/>
 
         </RelativeLayout>
 

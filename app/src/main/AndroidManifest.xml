@@ -3,6 +3,16 @@
     package="com.han0n.planid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <!--Necesario para que busque las apps instaladas por defecto en el sistema Android-->
+    <permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!--En este caso para la alarma-->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SET_ALARM" />
+        </intent>
+    </queries>
+
 
     <application
         android:allowBackup="true"
@@ -11,7 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanID">
-        <activity android:name=".PlanEdit"></activity>
+
+        <activity android:name=".PlanEdit">
+            <intent-filter>
+                <action android:name="android.intent.action.SET_ALARM" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Listado"
             android:launchMode="singleInstance"/><!--Solo habrá una instancia al crear nota-->
         <activity android:name=".Registro" />
