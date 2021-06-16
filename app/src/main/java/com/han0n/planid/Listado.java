@@ -23,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.han0n.planid.databinding.ActivityListadoBinding;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Listado extends AppCompatActivity implements RecycleViewClickInterface{
@@ -101,6 +103,27 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
 
         // Instanciamiento del swipe directamente en el onCreate
         new ItemTouchHelper(callback).attachToRecyclerView(binding.recNotas);
+
+        binding.btnCambiarTema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Collections.reverse(notaArrayList);
+                        // SETTEA el Adaptador
+                        notaADPT = new NotaADPT(Listado.this, notaArrayList, Listado.this);
+                        // SETTEAMOS al recycleview
+                        binding.recNotas.setAdapter(notaADPT);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
     }
 
     private void cargarNotas(){
@@ -124,6 +147,9 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                     }
 
                 }
+
+                Collections.reverse(notaArrayList);
+
                 // SETTEA el Adaptador
                 notaADPT = new NotaADPT(Listado.this, notaArrayList, Listado.this);
                 // SETTEAMOS al recycleview

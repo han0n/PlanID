@@ -20,6 +20,8 @@
         <item name="windowActionBar">false</item>
 
         <item name="textInputStyle">@style/Widget.PlanID.TextInputLayout</item>
+
+        <item name="backgroundTint">@color/primario</item>
     </style>
 
     <style name="Widget.PlanID.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">

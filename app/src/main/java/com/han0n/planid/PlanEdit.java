@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.text.InputType;
@@ -139,8 +141,41 @@ public class PlanEdit extends AppCompatActivity {
             }
         });
 
+        //ACCIÓN de enviar por Whatsapp
+        binding.btnWhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mensaje = "*" + binding.txtActividad.getText().toString() + "*" +
+                        "\n_" + binding.txtDesc.getText().toString() + "_";
+                enviarWhats(mensaje);
+            }
+        });
 
     }// Método onCreate
+
+    /* Método que comprueba si está instalado WhatsApp y envia mensaje*/
+    private void enviarWhats(String mensaje) {
+        //Log.d("AAA", mensaje);
+        PackageManager pm=getPackageManager();
+
+        try {
+
+            Intent waIntent = new Intent(Intent.ACTION_SEND);
+            waIntent.setType("text/plain");
+
+            PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+            // Comprueba si el paquete existe o no. Si no existe, salta el bloque de la excepción
+            waIntent.setPackage("com.whatsapp");
+
+            waIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+            startActivity(Intent.createChooser(waIntent, "Share with"));
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, R.string.sin_whatsapp, Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+
 
     public void establecerAlarma(String mensaje, int hora, int minuto){
 

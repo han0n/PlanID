@@ -26,4 +26,5 @@
     <string name="creando_cuenta">Creando cuenta...</string>
     <string name="actividad">actividad</string>
     <string name="descripcion">descripción</string>
+    <string name="sin_whatsapp">WhatsApp no está instalado</string>
 </resources>

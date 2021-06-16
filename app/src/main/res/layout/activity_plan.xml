@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/ic_create"
-                app:counterMaxLength="40"
+                app:counterMaxLength="30"
                 app:counterEnabled="true">
                 <EditText
                     android:id="@+id/txtActividad"
@@ -96,7 +96,7 @@
                     android:background="@color/nulo"
                     android:hint="@string/actividad"
                     android:inputType="textCapSentences"
-                    android:maxLength="40"
+                    android:maxLength="30"
                     android:layout_marginBottom="-20dp"/>
                 <!--el marginBotton es para que se vea el contador de palabras siempre-->
 
@@ -167,12 +167,27 @@
             android:id="@+id/btnPonerAlarma"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
             android:textColor="@color/text_shadow"
             android:text="@string/poner_alarma"
             android:focusable="false"
             android:visibility="invisible"
             android:backgroundTint="@color/fondo_intermedio"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:id="@+id/btnWhatsapp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/whatsapp"
+                android:clickable="true"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

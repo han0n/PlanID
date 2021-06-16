@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+
+        <item name="backgroundTint">@color/fondo_variante</item>
     </style>
     <style name="LaunchScreen" parent="Theme.PlanID">
         <item name="android:windowBackground">@drawable/launch_screen</item>

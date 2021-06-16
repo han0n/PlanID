@@ -48,8 +48,8 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
         //long timestamp = modelo.getTimestamp();
         String actividad = modelo.getActividad();
 
-        if (actividad.length()>32) {
-            actividad = modelo.getActividad().substring(0, 31);
+        if (actividad.length()>23) {
+            actividad = modelo.getActividad().substring(0, 22);
             int ultimoEspacio = actividad.lastIndexOf(" ");
             actividad = modelo.getActividad().substring(0, ultimoEspacio+1) + "...";
         }

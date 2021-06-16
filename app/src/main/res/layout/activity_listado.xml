@@ -27,6 +27,15 @@
         android:padding="5dp"
         android:paddingBottom="0dp">
 
+        <!--Botón para reordenar las notas, por fecha edición/creac.-->
+        <ImageButton
+            android:id="@+id/btnCambiarTema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sort"
+            android:background="@color/nulo"
+            android:layout_alignParentLeft="true" />
+
         <!--Botón para salir del usuario actual-->
         <ImageButton
             android:id="@+id/btnCerrarSesion"
