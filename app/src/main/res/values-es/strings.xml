@@ -27,4 +27,12 @@
     <string name="actividad">actividad</string>
     <string name="descripcion">descripción</string>
     <string name="sin_whatsapp">WhatsApp no está instalado</string>
+    <string name="L">L</string>
+    <string name="M">M</string>
+    <string name="X">X</string>
+    <string name="J">J</string>
+    <string name="V">V</string>
+    <string name="S">S</string>
+    <string name="D">D</string>
+    <string name="compartir_con">Compartir con</string>
 </resources>

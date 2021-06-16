@@ -72,8 +72,8 @@
                 android:id="@+id/campoNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_person">
+                app:startIconDrawable="@drawable/ic_person"
+                app:counterEnabled="true">
                 <EditText
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
@@ -81,6 +81,7 @@
                     android:background="@color/nulo"
                     android:hint="@string/nombre"
                     android:inputType="textPersonName"
+                    android:layout_marginBottom="-10dp"
                     android:maxLength="12"/>
 
             </com.google.android.material.textfield.TextInputLayout>

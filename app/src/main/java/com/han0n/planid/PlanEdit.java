@@ -1,12 +1,15 @@
 package com.han0n.planid;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.text.InputType;
@@ -16,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -34,12 +38,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.han0n.planid.databinding.ActivityPlanBinding;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
 import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD;
 
-public class PlanEdit extends AppCompatActivity {
+public class PlanEdit extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityPlanBinding binding;
     private MaterialTimePicker reloj;
@@ -50,10 +55,14 @@ public class PlanEdit extends AppCompatActivity {
     private String planId_;// Este es el que se pasa
     private DatabaseReference ref;
     private String hora_="", minuto_="";//**NO SETEA LA HORA**(Ya sí, era problema del formato)
-    private int hora=0, minuto=1;
+    private int hora=25, minuto=60;//**CORREGIDO PARA QUE LAS NOTAS CON 0 HORAS Y 1 MINUTO LOS
+    //CONSIDERE COMO HECHOS Y NO COMO NUEVOS AL EDITAR: Serán visible el btnSetAlarma y chkDias**
 
     // Para que guarde la hora y pase de construir un selector de hora de 0
     boolean relojSeteado;
+
+    // Para setear los días que se pondrá la alarma
+    public ArrayList<Integer> dias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +123,10 @@ public class PlanEdit extends AppCompatActivity {
                                 .build();
                         relojSeteado = true;
                         binding.btnPonerAlarma.setVisibility(View.VISIBLE);
+                        //Se hace visible el selector de días
+                        binding.chkDias.setVisibility((View.VISIBLE));
+                        dias = new ArrayList<>();//Se inicializa, ya está instanciado para toda la clase
+
                     }
                 });
             }
@@ -151,6 +164,22 @@ public class PlanEdit extends AppCompatActivity {
             }
         });
 
+        binding.chkLunes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+        findViewById(R.id.chkLunes).setOnClickListener(this);
+        findViewById(R.id.chkMartes).setOnClickListener(this);
+        findViewById(R.id.chkLunes).setOnClickListener(this);
+        findViewById(R.id.chkLunes).setOnClickListener(this);
+        findViewById(R.id.chkViernes).setOnClickListener(this);
+        findViewById(R.id.chkSabado).setOnClickListener(this);
+        findViewById(R.id.chkDomingo).setOnClickListener(this);
+
     }// Método onCreate
 
     /* Método que comprueba si está instalado WhatsApp y envia mensaje*/
@@ -168,7 +197,7 @@ public class PlanEdit extends AppCompatActivity {
             waIntent.setPackage("com.whatsapp");
 
             waIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
-            startActivity(Intent.createChooser(waIntent, "Share with"));
+            startActivity(Intent.createChooser(waIntent, getResources().getText(R.string.compartir_con)));
 
         } catch (PackageManager.NameNotFoundException e) {
             Toast.makeText(this, R.string.sin_whatsapp, Toast.LENGTH_SHORT)
@@ -184,6 +213,12 @@ public class PlanEdit extends AppCompatActivity {
                 .putExtra(AlarmClock.EXTRA_HOUR, hora)
                 .putExtra(AlarmClock.EXTRA_MINUTES, minuto)
                 .putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+
+        //Aquí ahora se comprueban los días que se ha seleccionado
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            intent.putExtra(AlarmClock.EXTRA_DAYS, dias);
+        }
+
         if(intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
         }
@@ -211,7 +246,7 @@ public class PlanEdit extends AppCompatActivity {
                 /* Corregido que no se seteasen bien, se deben usar de tipo int + el Locale */
                 String hMFormato = String.format(Locale.getDefault(),"%02d : %02d", hora, minuto);
 
-                if(hora!=0 && minuto!=1) {// Valores que se guardan por defecto cuando no se selecciona
+                if(hora!=25 && minuto!=60) {// Valores que se guardan por defecto cuando NO se selecciona
                     binding.campoAlarma.setHint(hMFormato);// Se setea al Hint del campo Alarma
 
                     reloj = new MaterialTimePicker.Builder()// Se meten los viejos valores al picker
@@ -221,6 +256,9 @@ public class PlanEdit extends AppCompatActivity {
                             .build();
                     relojSeteado = true;
                     binding.btnPonerAlarma.setVisibility(View.VISIBLE);
+                    // Se pondrán visibles los chk de los días de la semana si es una Nota editada
+                    binding.chkDias.setVisibility(View.VISIBLE);//
+
                 }else{
                     relojSeteado = false;
                     binding.campoAlarma.setHint("00 : 00");
@@ -291,5 +329,72 @@ public class PlanEdit extends AppCompatActivity {
                 });
 
     }
+
+    /* Controla los CHECKBOX de los DÍAS DE LA SEMANA para setearlos en la Alarma*/
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+
+        switch(v.getId()) {
+            case R.id.chkLunes:
+                if (!dias.contains(Calendar.MONDAY))
+                    dias.add(Calendar.MONDAY);
+                else {
+                    int i = dias.indexOf(Calendar.MONDAY);
+                    dias.remove(i);
+                }
+                break;
+            case R.id.chkMartes:
+                if (!dias.contains(Calendar.TUESDAY))
+                    dias.add(Calendar.TUESDAY);
+                else {
+                    int i = dias.indexOf(Calendar.TUESDAY);
+                    dias.remove(i);
+                }
+                break;
+            case R.id.chkMiercoles:
+                if (!dias.contains(Calendar.WEDNESDAY))
+                    dias.add(Calendar.WEDNESDAY);
+                else {
+                    int i = dias.indexOf(Calendar.WEDNESDAY);
+                    dias.remove(i);
+                }
+                break;
+            case R.id.chkJueves:
+                if (!dias.contains(Calendar.THURSDAY))
+                    dias.add(Calendar.THURSDAY);
+                else {
+                    int i = dias.indexOf(Calendar.THURSDAY);
+                    dias.remove(i);
+                }
+                break;
+            case R.id.chkViernes:
+                if (!dias.contains(Calendar.FRIDAY))
+                    dias.add(Calendar.FRIDAY);
+                else {
+                    int i = dias.indexOf(Calendar.FRIDAY);
+                    dias.remove(i);
+                }
+                break;
+            case R.id.chkSabado:
+                if (!dias.contains(Calendar.SATURDAY))
+                    dias.add(Calendar.SATURDAY);
+                else {
+                    int i = dias.indexOf(Calendar.SATURDAY);
+                    dias.remove(i);
+                }
+                break;
+            case R.id.chkDomingo:
+                if (!dias.contains(Calendar.SUNDAY))
+                    dias.add(Calendar.SUNDAY);
+                else {
+                    int i = dias.indexOf(Calendar.SUNDAY);
+                    dias.remove(i);
+                }
+                break;
+        }
+        /* Si no hay seleccionado ninguno, se setea la alarma para el día ACTUAL */
+
+    }// Método onClick de los CheckBox de los días de la semana
 
 }
