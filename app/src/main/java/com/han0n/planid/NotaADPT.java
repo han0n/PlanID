@@ -47,7 +47,38 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
         //String uid = modelo.getUid();
         //long timestamp = modelo.getTimestamp();
         String actividad = modelo.getActividad();
-        String descripcion = modelo.getDescripcion();
+
+        if (actividad.length()>32) {
+            actividad = modelo.getActividad().substring(0, 31);
+            int ultimoEspacio = actividad.lastIndexOf(" ");
+            actividad = modelo.getActividad().substring(0, ultimoEspacio+1) + "...";
+        }
+
+        String descripcionFull = modelo.getDescripcion();
+        String descripcion = "";
+        String descripcion_ = "";
+
+        if (descripcionFull.length()>=44){
+            //Buscamos el último espacio...
+            descripcion = modelo.getDescripcion().substring(0, 43);
+            int ultimoEspacio = descripcion.lastIndexOf(" ");
+
+            descripcion = modelo.getDescripcion().substring(0, ultimoEspacio+1);
+
+            if(descripcionFull.length()<88) {// Si la segunda parte de texto no tiene más de 88-4 chars
+                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio, descripcion.length());
+
+            }else{// Los puntos suspensivos y el espacio último también cuentan... 88-4 chars
+                //el doble de 44 = a este 88
+
+                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1, 82);
+
+                int ultimoEspacio_ = descripcion_.lastIndexOf(" ");
+                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1 , ultimoEspacio_+1+ultimoEspacio+1) + "...";
+            }
+
+        }// Para adaptar textos largos en las cardviews
+
         int hora = modelo.getHora();
         int minuto = modelo.getMinuto();
 
@@ -61,6 +92,7 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
         // Los setea
         holder.vistaActividad.setText(actividad);
         holder.vistaDescripcion.setText(descripcion);
+        holder.vistaDesc_.setText(descripcion_);
         holder.vistaHora.setText(hMFormato);
 
 
@@ -77,6 +109,7 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
         //Las vistas de la UI para la cardview_nota.xml
         TextView vistaActividad;
         TextView vistaDescripcion;
+        TextView vistaDesc_;
         TextView vistaHora;
 
         public HolderNota(@NonNull View itemView) {
@@ -84,6 +117,7 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
             // Inicialización de las Vistas de la UI
             vistaActividad = binding.vistaActividad;
             vistaDescripcion = binding.vistaDescripcion;
+            vistaDesc_ = binding.vistaDesc;
             vistaHora = binding.vistaHora;
 
             itemView.setOnClickListener(new View.OnClickListener() {

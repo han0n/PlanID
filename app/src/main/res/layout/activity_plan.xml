@@ -58,21 +58,23 @@
             android:fontFamily="serif-monospace"
             android:textStyle="bold"
             android:textSize="26sp"
-            android:textColor="@color/fondo"
-            android:shadowColor="@color/fondo_variante"
+            android:textColor="@color/fondo_intermedio"
+            android:shadowColor="@color/text_shadow"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="5"/>
 
     </RelativeLayout>
 
-
+    <!--Donde van los campo rellenables: Actividad y Descripción-->
     <ScrollView
+        android:id="@+id/contenedor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_below="@+id/cabecera">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/cabecera"
+        android:layout_above="@+id/barraSetteo">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -84,7 +86,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_create">
+                app:startIconDrawable="@drawable/ic_create"
+                app:counterMaxLength="40"
+                app:counterEnabled="true">
                 <EditText
                     android:id="@+id/txtActividad"
                     android:layout_width="match_parent"
@@ -92,7 +96,9 @@
                     android:background="@color/nulo"
                     android:hint="@string/actividad"
                     android:inputType="textCapSentences"
-                    android:maxLength="40"/>
+                    android:maxLength="40"
+                    android:layout_marginBottom="-20dp"/>
+                <!--el marginBotton es para que se vea el contador de palabras siempre-->
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,65 +109,112 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/campoNombre"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_gesture">
+                app:startIconDrawable="@drawable/ic_gesture"
+                app:counterMaxLength="200"
+                app:counterEnabled="true">
                 <EditText
                     android:id="@+id/txtDesc"
                     android:layout_width="fill_parent"
-                    android:layout_height="75sp"
+                    android:layout_height="wrap_content"
                     android:background="@color/nulo"
                     android:hint="@string/descripcion"
                     android:inputType="textMultiLine|textCapSentences"
-                    android:maxHeight="75sp"
-                    android:maxLength="80"/>
+                    android:maxLength="200"
+                    android:layout_marginBottom="-20dp"
+                    android:maxHeight="110dp"/>
                 <!--android:ellipsize servirá después para mostrar textos tan largos en una lista-->
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/campoDescripcion"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <!--Campo de la alarma-->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/campoAlarma"
-                    android:layout_width="120sp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/campoDescripcion"
-                    app:startIconDrawable="@drawable/ic_alarm"
-                    android:clickable="true">
-
-                    <EditText
-                        android:id="@+id/txtAlarma"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/nulo"
-                        android:hint="00 : 00"
-                        android:editable="false"
-                        android:focusable="false"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/btnPonerAlarma"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/text_shadow"
-                    android:text="@string/poner_alarma"
-                    android:focusable="false"
-                    android:visibility="invisible"
-                    android:backgroundTint="@color/fondo_variante"/>
-
-            </LinearLayout>
-
-
 
         </RelativeLayout>
-    </ScrollView>
 
+    </ScrollView>
+    <!--Fin de los campos rellenables-->
+
+    <!--Barra invisible para poner hora y que muestra la fecha de edición de la nota-->
+    <!--MarginBotton de 50dp porque el efecto de finales de hojas tiene esa medida,
+    para que no se solape con el efecto-->
+    <LinearLayout
+        android:id="@+id/barraSetteo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_above="@+id/finHoja"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <!--Campo de la alarma-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campoAlarma"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_alarm"
+            android:clickable="true">
+
+            <EditText
+                android:id="@+id/txtAlarma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/nulo"
+                android:hint="00 : 00"
+                android:editable="false"
+                android:focusable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnPonerAlarma"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/text_shadow"
+            android:text="@string/poner_alarma"
+            android:focusable="false"
+            android:visibility="invisible"
+            android:backgroundTint="@color/fondo_intermedio"/>
+
+    </LinearLayout>
+
+    <!--Cabecera de la Cuenta AKA ToolBar-->
+    <!--Sombra del ToolBar-->
+    <LinearLayout
+        android:id="@+id/finHoja"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="14dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@drawable/cabecera_sombra"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="16dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@drawable/cabecera_sombra"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="18dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@drawable/cabecera_sombra"/>
+        </LinearLayout>
+        <!--La última desborda para que haga efecto de continuidad-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/cabecera_sombra"/>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

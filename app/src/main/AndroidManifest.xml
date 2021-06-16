@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanID">
 
-        <activity android:name=".PlanEdit">
+        <activity android:name=".PlanEdit"
+            android:windowSoftInputMode="adjustPan" ><!--Para que no se suba el efecto de finHoja-->
             <intent-filter>
                 <action android:name="android.intent.action.SET_ALARM" />
             </intent-filter>

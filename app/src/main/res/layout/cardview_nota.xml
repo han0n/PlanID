@@ -25,22 +25,32 @@
 
                 <TextView
                     android:id="@+id/vistaActividad"
-                    android:layout_width="135pt"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
+                    android:paddingTop="4dp"
                     android:text="Título de la nota"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:ellipsize="middle"
-                    android:singleLine="true"/>
+                    android:singleLine="true" />
+                <!--Quitado el ellipsize porque no lo muestra bien-->
 
                 <TextView
                     android:id="@+id/vistaDescripcion"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="12.5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Descripción de la nota..."
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+                <TextView
+                    android:id="@+id/vistaDesc_"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingRight="12.5dp"
-                    android:text="Descripción de la nota\n..."
-                    android:textSize="16sp" />
+                    android:text="Descripción de la nota..."
+                    android:textSize="16sp"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
@@ -49,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingRight="12.5dp"
-                android:paddingTop="5dp"
+                android:paddingTop="4dp"
                 android:paddingLeft="10dp"
                 android:layout_alignParentRight="true"
                 android:text="00 : 00"
