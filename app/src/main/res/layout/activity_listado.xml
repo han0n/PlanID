@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Listado"
     android:backgroundTintMode="screen"
-    android:backgroundTint="@color/primario_variante"
-    android:background="@drawable/honeycomb_dark_repeat">
+    android:backgroundTint="@color/primario"
+    android:background="@drawable/batthern_repeat">
 
     <!--Cabecera de la Cuenta AKA ToolBar-->
     <!--Relleno del ToolBar-->

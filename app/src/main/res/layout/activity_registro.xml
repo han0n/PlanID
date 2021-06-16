@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registro"
-    android:backgroundTintMode="multiply"
     android:backgroundTint="@color/fondo"
-    android:background="@drawable/honeycomb_repeat">
+    android:background="@drawable/batthern_repeat">
 
     <!--Sombra del ToolBar-->
     <View
@@ -52,7 +51,7 @@
             android:shadowColor="@color/text_shadow"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="2"/>
+            android:shadowRadius="5"/>
 
     </RelativeLayout>
 
@@ -152,7 +151,7 @@
                 android:textColor="@color/text_shadow"
                 android:text="@string/crear_cuenta"
                 android:focusable="false"
-                android:backgroundTint="@color/nulo"/>
+                android:backgroundTint="@color/material_on_primary_disabled"/>
 
 
         </RelativeLayout>

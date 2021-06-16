@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlanEdit"
-    android:backgroundTintMode="multiply"
-    android:backgroundTint="@color/fondo"
-    android:background="@drawable/project_paper_repeat">
+    android:background="@color/fondo">
 
     <!--Sombra del ToolBar-->
     <View
@@ -60,11 +58,11 @@
             android:fontFamily="serif-monospace"
             android:textStyle="bold"
             android:textSize="26sp"
-            android:textColor="@color/white"
-            android:shadowColor="@color/text_shadow"
+            android:textColor="@color/fondo"
+            android:shadowColor="@color/fondo_variante"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="2"/>
+            android:shadowRadius="5"/>
 
     </RelativeLayout>
 
@@ -92,9 +90,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/nulo"
-                    android:hint="actividad"
+                    android:hint="@string/actividad"
                     android:inputType="textCapSentences"
-                    android:maxLength="20"/>
+                    android:maxLength="40"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,10 +109,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="75sp"
                     android:background="@color/nulo"
-                    android:hint="descripción"
+                    android:hint="@string/descripcion"
                     android:inputType="textMultiLine|textCapSentences"
                     android:maxHeight="75sp"
-                    android:maxLength="40"/>
+                    android:maxLength="80"/>
                 <!--android:ellipsize servirá después para mostrar textos tan largos en una lista-->
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -152,10 +150,10 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/text_shadow"
-                    android:text="Poner Alarma"
+                    android:text="@string/poner_alarma"
                     android:focusable="false"
                     android:visibility="invisible"
-                    android:backgroundTint="@color/nulo"/>
+                    android:backgroundTint="@color/fondo_variante"/>
 
             </LinearLayout>
 

@@ -33,6 +33,7 @@ import com.han0n.planid.databinding.ActivityPlanBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD;
 
@@ -127,7 +128,14 @@ public class PlanEdit extends AppCompatActivity {
         binding.btnPonerAlarma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                establecerAlarma("Alarma puesta", hora, minuto);
+
+                validarDatos();// Primero valida que tenga actividad
+                if (!TextUtils.isEmpty(actividad)) {// Más potente que el ==
+                    establecerAlarma(actividad, hora, minuto);
+                    Intent intent = new Intent(PlanEdit.this, Listado.class);
+                    finish();
+                }
+
             }
         });
 
@@ -165,16 +173,23 @@ public class PlanEdit extends AppCompatActivity {
 
                 binding.txtActividad.setText(actividad);
                 binding.txtDesc.setText(descripcion);
-                String hMFormato = String.format("%2s : %2s", hora_, minuto_);
-                binding.campoAlarma.setHint(hMFormato);// Se setea al Hint del campo Alarma
+                /* Corregido que no se seteasen bien, se deben usar de tipo int + el Locale */
+                String hMFormato = String.format(Locale.getDefault(),"%02d : %02d", hora, minuto);
 
-                reloj = new MaterialTimePicker.Builder()// Se meten los viejos valores al picker
-                        .setTimeFormat(TimeFormat.CLOCK_24H)
-                        .setHour(hora)
-                        .setMinute(minuto)
-                        .build();
-                relojSeteado = true;
-                binding.btnPonerAlarma.setVisibility(View.VISIBLE);
+                if(hora!=0 && minuto!=1) {// Valores que se guardan por defecto cuando no se selecciona
+                    binding.campoAlarma.setHint(hMFormato);// Se setea al Hint del campo Alarma
+
+                    reloj = new MaterialTimePicker.Builder()// Se meten los viejos valores al picker
+                            .setTimeFormat(TimeFormat.CLOCK_24H)
+                            .setHour(hora)
+                            .setMinute(minuto)
+                            .build();
+                    relojSeteado = true;
+                    binding.btnPonerAlarma.setVisibility(View.VISIBLE);
+                }else{
+                    relojSeteado = false;
+                    binding.campoAlarma.setHint("00 : 00");
+                }
 
             }
 
@@ -193,7 +208,7 @@ public class PlanEdit extends AppCompatActivity {
         descripcion = binding.txtDesc.getText().toString().trim();
 
         if (TextUtils.isEmpty(actividad)){
-            Toast.makeText(this, "No se ha ingresado la actividad", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.actividad_null, Toast.LENGTH_SHORT).show();
         }else {
             subidaFirebase();
         }
@@ -224,7 +239,11 @@ public class PlanEdit extends AppCompatActivity {
                         ref.child(String.valueOf(planId_)) //En caso de ser una nota editada, CLARO
                                 .removeValue(); // Sin comprobación de si se elimina BIEN
 
-                        Toast.makeText(PlanEdit.this, "Nota modificada con éxito", Toast.LENGTH_SHORT).show();
+                        if (!TextUtils.isEmpty(planId_))
+                            Toast.makeText(PlanEdit.this, R.string.nota_modificada, Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(PlanEdit.this, R.string.nota_creada, Toast.LENGTH_SHORT).show();
+
                         startActivity(new Intent(PlanEdit.this, Listado.class));
                         finish();
                     }

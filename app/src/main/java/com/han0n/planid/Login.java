@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         alerta = new ProgressDialog(this);
-        alerta.setTitle("Por favor, espere");
+        alerta.setTitle(R.string.espere);
         alerta.setCanceledOnTouchOutside(false);
 
         //ACCIÓN del texto txtReg
@@ -66,10 +66,13 @@ public class Login extends AppCompatActivity {
         pswd = binding.txtPswd.getText().toString().trim();
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "No se ha ingresado un e-mail válido", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(email))
+                Toast.makeText(this, R.string.falta_email, Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, R.string.email_no_valido, Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(pswd)){
-            Toast.makeText(this, "No se ha ingresado la contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.falta_pswd, Toast.LENGTH_SHORT).show();
         }
         else{// Los datos se han validado
             loginCuenta();
@@ -78,7 +81,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginCuenta() {
-        alerta.setMessage("Obteniendo acceso");
+        alerta.setMessage(this.getResources().getString(R.string.acceso));
         alerta.show();// Hasta que no termina de crear cuenta no se cierra
 
         firebaseAuth.signInWithEmailAndPassword(email, pswd)

@@ -11,4 +11,19 @@
     <string name="listado_cabecera"><b>¡Anótalo </b></string>
     <string name="plan_cabecera">nueva nota</string>
     <string name="editar_nota">editar nota</string>
+    <string name="poner_alarma">Poner Alarma</string>
+    <string name="nota_creada">Nota creada con éxito</string>
+    <string name="nota_modificada">Nota modificada con éxito</string>
+    <string name="actividad_null">No se ha ingresado la actividad</string>
+    <string name="espere">Por favor, espere</string>
+    <string name="email_no_valido">No se ha ingresado un e-mail válido</string>
+    <string name="falta_pswd">No se ha ingresado la contraseña</string>
+    <string name="acceso">Obteniendo acceso</string>
+    <string name="falta_email">Se requiere un e-mail</string>
+    <string name="confirma_pswd">Confirma la contraseña</string>
+    <string name="diferente_pswd">Las contraseñas no coinciden</string>
+    <string name="falta_nombre">No se ha ingresado un nombre</string>
+    <string name="creando_cuenta">Creando cuenta...</string>
+    <string name="actividad">actividad</string>
+    <string name="descripcion">descripción</string>
 </resources>

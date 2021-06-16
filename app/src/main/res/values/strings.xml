@@ -8,7 +8,22 @@
     <string name="login">Enter</string>
     <string name="login_cabecera"><b>log-in</b></string>
     <string name="signup_cabecera"><b>sign-up</b></string>
-    <string name="listado_cabecera"><b>Listado de </b></string>
-    <string name="plan_cabecera">nueva nota</string>
-    <string name="editar_nota">editar nota</string>
+    <string name="listado_cabecera"><b>Prop it up </b></string>
+    <string name="plan_cabecera">new note</string>
+    <string name="editar_nota">edit note</string>
+    <string name="poner_alarma">Set Alarm</string>
+    <string name="nota_creada">Note created successfully</string>
+    <string name="nota_modificada">Note modified successfully</string>
+    <string name="actividad_null">An activity is required</string>
+    <string name="espere">Please, wait</string>
+    <string name="email_no_valido">A valid email has not been entered</string>
+    <string name="falta_pswd">An password is required</string>
+    <string name="acceso">Getting in</string>
+    <string name="falta_email">An e-mail is required</string>
+    <string name="confirma_pswd">Confirm the password</string>
+    <string name="diferente_pswd">Passwords don\'t match</string>
+    <string name="falta_nombre">A name is required</string>
+    <string name="creando_cuenta">Creating account...</string>
+    <string name="actividad">activity</string>
+    <string name="descripcion">description</string>
 </resources>

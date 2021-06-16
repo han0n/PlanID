@@ -40,7 +40,7 @@ public class Registro extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         alerta = new ProgressDialog(this);
-        alerta.setTitle("Por favor, espere");
+        alerta.setTitle(this.getResources().getString(R.string.espere));
         alerta.setCanceledOnTouchOutside(false);
 
         //ACCIÓN del Botón de ATRAS
@@ -70,19 +70,22 @@ public class Registro extends AppCompatActivity {
         String pswdRe = binding.txtPswdRe.getText().toString().trim();
 
         if(TextUtils.isEmpty(nombre)){
-            Toast.makeText(this, "No se ha ingresado un nombre", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.falta_nombre, Toast.LENGTH_SHORT).show();
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(this, "No se ha ingresado un e-mail válido", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(email))
+                Toast.makeText(this, R.string.falta_email, Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, R.string.email_no_valido, Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(pswd)){
-            Toast.makeText(this, "No se ha ingresado la contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.falta_pswd, Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(pswdRe)){
-            Toast.makeText(this, "Confirma la contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.confirma_pswd, Toast.LENGTH_SHORT).show();
         }
         else if (!pswd.equals(pswdRe)){
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.diferente_pswd, Toast.LENGTH_SHORT).show();
         }
         else{
             crearCuenta();
@@ -91,7 +94,7 @@ public class Registro extends AppCompatActivity {
     }
 
     private void crearCuenta() {
-        alerta.setMessage("Creando cuenta...");
+        alerta.setMessage(this.getResources().getString(R.string.creando_cuenta));
         alerta.show();// Hasta que no termina de crear cuenta no se cierra
 
         //CREACIÓN DEL Usuario en Firebase
