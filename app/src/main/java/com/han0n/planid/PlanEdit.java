@@ -257,7 +257,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
                     relojSeteado = true;
                     binding.btnPonerAlarma.setVisibility(View.VISIBLE);
                     // Se pondrán visibles los chk de los días de la semana si es una Nota editada
-                    binding.chkDias.setVisibility(View.VISIBLE);//
+                    //binding.chkDias.setVisibility(View.VISIBLE);//**CRASHEA LA APP, REVISAR**
 
                 }else{
                     relojSeteado = false;

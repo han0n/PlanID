@@ -9,4 +9,5 @@
     <color name="fondo_intermedio">#FFE061</color>
     <color name="fondo_variante">#FFA000</color>
     <color name="text_shadow">#7F000000</color>
+    <color name="gris">#CFD8DC</color>
 </resources>

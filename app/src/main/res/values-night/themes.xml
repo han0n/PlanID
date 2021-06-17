@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.PlanID" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/fondo_variante</item>
+        <item name="colorPrimary">@color/fondo_intermedio</item>
         <item name="colorPrimaryVariant">@color/fondo</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -14,8 +14,6 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-
-        <item name="backgroundTint">@color/fondo_variante</item>
     </style>
     <style name="LaunchScreen" parent="Theme.PlanID">
         <item name="android:windowBackground">@drawable/launch_screen</item>

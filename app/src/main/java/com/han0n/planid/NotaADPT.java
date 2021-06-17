@@ -58,6 +58,7 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
         String descripcion = "";
         String descripcion_ = "";
 
+        // Para adaptar textos largos en las cardviews
         if (descripcionFull.length()>=44){
             //Buscamos el último espacio...
             descripcion = modelo.getDescripcion().substring(0, 43);
@@ -66,24 +67,26 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
             descripcion = modelo.getDescripcion().substring(0, ultimoEspacio+1);
 
             if(descripcionFull.length()<88) {// Si la segunda parte de texto no tiene más de 88-4 chars
-                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio, descripcion.length());
+                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1, descripcionFull.length());
 
             }else{// Los puntos suspensivos y el espacio último también cuentan... 88-4 chars
                 //el doble de 44 = a este 88
 
-                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1, 82);
+                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1, 84);
 
                 int ultimoEspacio_ = descripcion_.lastIndexOf(" ");
                 descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1 , ultimoEspacio_+1+ultimoEspacio+1) + "...";
             }
 
-        }// Para adaptar textos largos en las cardviews
+        }else{
+            descripcion = modelo.getDescripcion();
+        }
 
         int hora = modelo.getHora();
         int minuto = modelo.getMinuto();
 
         String hMFormato;
-        if(hora == 0 && minuto == 1)
+        if(hora == 25 && minuto == 60)
             hMFormato = "";
         else
             hMFormato = String.format("%02d : %02d", hora, minuto);

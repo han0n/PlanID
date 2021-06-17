@@ -73,7 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:startIconDrawable="@drawable/ic_person"
-                app:counterEnabled="true">
+                app:counterEnabled="true"
+                app:counterMaxLength="12">
                 <EditText
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
@@ -92,7 +93,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/campoNombre"
-                android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/ic_email">
                 <EditText
                     android:id="@+id/txtEmail"

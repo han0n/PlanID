@@ -95,8 +95,12 @@
         android:layout_marginRight="3dp"
         android:layout_marginLeft="4dp"
         android:layout_below="@id/cabecera"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="3dp"
         tools:listitem="@layout/cardview_nota"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        <!--clipToPadding="false" hace que coja los paddings primero y último solo-->
 
     </androidx.recyclerview.widget.RecyclerView>
 
