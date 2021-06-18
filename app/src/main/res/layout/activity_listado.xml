@@ -95,6 +95,7 @@
         android:layout_marginRight="3dp"
         android:layout_marginLeft="4dp"
         android:layout_below="@id/cabecera"
+        android:layout_above="@+id/pieNotaRapida"
         android:clipToPadding="false"
         android:paddingTop="4dp"
         android:paddingBottom="3dp"
@@ -106,19 +107,65 @@
 
     <!--Sombra del ToolBar-->
     <View
-        android:id="@+id/toolbar_shadow"
+        android:id="@+id/toolbarSombra"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/res_cabecera_sombra" />
 
+    <!--Sombra del pie de NotaRapida-->
+    <View
+        android:id="@+id/rapidnoteSombra"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/pieNotaRapida"
+        android:rotationX="190"
+        android:layout_height="10dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/res_cabecera_sombra" />
+
+    <LinearLayout
+        android:id="@+id/pieNotaRapida"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/primario_variante">
+
+        <!--Campo del nombre-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/campoNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/hint_create"
+            app:counterMaxLength="30"
+            app:counterEnabled="true"
+            android:hint="actividad rápida"
+            android:gravity="center">
+        <EditText
+            android:id="@+id/txtActividadRapida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_shadow_end_color"
+            android:inputType="textCapSentences"
+            android:maxLength="30"
+            android:layout_marginBottom="-18dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+        <!--el marginBotton es para que se vea el contador de palabras siempre-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
     <!--Botón que simula una entrada de la lista para nuevo Plan-->
     <LinearLayout
-        android:id="@+id/pie"
+        android:id="@+id/pieCrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/pieNotaRapida"
+        android:layout_marginBottom="15dp"
         android:gravity="center">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnCrear"
@@ -130,6 +177,8 @@
             android:layout_margin="15dp"
             android:backgroundTint="@color/primario_variante"/>
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

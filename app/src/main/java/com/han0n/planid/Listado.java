@@ -5,12 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +33,7 @@ import com.han0n.planid.databinding.ActivityListadoBinding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Listado extends AppCompatActivity implements RecycleViewClickInterface{
@@ -75,10 +84,41 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
             }
         });
 
+        // ACCIÓN del botón CLIP(Crear nuevo plan)
         binding.btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Listado.this, PlanEdit.class));
+                if(binding.txtActividadRapida.getText().toString().isEmpty())
+                    startActivity(new Intent(Listado.this, PlanEdit.class));
+            }
+        });
+
+        // ACCIÓN de PULSAR al ENTER al meter Texto en txtActividadRapida
+        binding.txtActividadRapida.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                // Si se pulsa al enter del teclado:
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)){
+
+                    v.clearFocus();// Le quita el foco, barrita de insertar texto
+                    crearNotaRapida();
+                    v.setText("");// **OJO** Después de crear la nota
+                }
+                // Si se pulsa hacia atrás/abajo: **FALTA IMPLEMENTARLO**
+
+                return false;
+            }
+        });
+
+        // ACCIÓN de PULSAR al ENTER al meter Texto en txtActividadRapida
+        //***IMPRESCINDIBLE QUE TENGA: En su OnEditorActionListener() un desfocalizador
+        binding.txtActividadRapida.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    binding.btnCrear.setVisibility(View.GONE);
+                else
+                    binding.btnCrear.setVisibility(View.VISIBLE);
             }
         });
 
@@ -124,6 +164,56 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                 });
             }
         });
+
+    }// Método onCreate(Bundle savedInstanceState)
+
+
+    private String actividad="";
+    private void crearNotaRapida() {
+
+        actividad = binding.txtActividadRapida.getText().toString().trim();
+
+        if (TextUtils.isEmpty(actividad)){/*Nada, NO CREA la Nota*/}
+        else
+            subidaFirebase();
+    }
+
+    private void subidaFirebase() {
+
+        HashMap<String, Object> valores = new HashMap<>();
+        // Se usará como id
+        long timestamp = System.currentTimeMillis();
+
+        valores.put("id", timestamp);
+        valores.put("actividad", actividad);
+        valores.put("uid", ""+firebaseAuth.getUid());
+
+        /* Deben de suirse con estos campos como cadenas sin contenido porque se usan en NotaADPT: */
+        valores.put("descripcion", "");
+        valores.put("hora", 25);
+        valores.put("minuto", 60);
+
+        // Añadiendo a la BD
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("notas");
+        ref.child(""+timestamp)
+                .setValue(valores)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override// Si se añade sin problemas la nota...
+                    public void onSuccess(Void aVoid) {
+
+                        Toast.makeText(Listado.this, R.string.nota_creada, Toast.LENGTH_SHORT).show();
+
+                        //startActivity(new Intent(PlanEdit.this, Listado.class));
+                        //finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Listado.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
     }
 
     private void cargarNotas(){
