@@ -12,7 +12,7 @@
         android:id="@+id/toolbar_shadow"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@drawable/cabecera_sombra" />
+        android:background="@drawable/res_cabecera_sombra" />
 
     <!--Cabecera-->
     <RelativeLayout
@@ -25,7 +25,7 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/paper_clip"/>
+            android:background="@drawable/ui_paper_clip"/>
 
         <!--Botón para retroceder al Login-->
         <ImageButton
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="5dp"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/btn_back"
             android:background="@color/nulo"/>
 
         <!--Botón para guardar Plan-->
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="5dp"
-            android:src="@drawable/ic_done"
+            android:src="@drawable/btn_done"
             android:background="@color/nulo"
             android:layout_alignParentRight="true" />
 
@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_create"
+                app:startIconDrawable="@drawable/hint_create"
                 app:counterMaxLength="30"
                 app:counterEnabled="true">
                 <EditText
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/campoNombre"
-                app:startIconDrawable="@drawable/ic_gesture"
+                app:startIconDrawable="@drawable/hint_gesture"
                 app:counterMaxLength="200"
                 app:counterEnabled="true">
                 <EditText
@@ -201,7 +201,7 @@
             android:id="@+id/campoAlarma"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_alarm"
+            app:startIconDrawable="@drawable/hint_alarm"
             android:clickable="true">
 
             <EditText
@@ -238,7 +238,7 @@
                 android:id="@+id/btnWhatsapp"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/whatsapp"
+                android:src="@drawable/btn_whatsapp"
                 android:clickable="true"/>
 
         </LinearLayout>
@@ -259,7 +259,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@drawable/cabecera_sombra"/>
+                android:background="@drawable/res_cabecera_sombra"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -267,7 +267,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@drawable/cabecera_sombra"/>
+                android:background="@drawable/res_cabecera_sombra"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -275,13 +275,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@drawable/cabecera_sombra"/>
+                android:background="@drawable/res_cabecera_sombra"/>
         </LinearLayout>
         <!--La última desborda para que haga efecto de continuidad-->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@drawable/cabecera_sombra"/>
+            android:background="@drawable/res_cabecera_sombra"/>
 
     </LinearLayout>
 

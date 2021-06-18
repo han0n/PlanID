@@ -7,7 +7,7 @@
     tools:context=".Listado"
     android:backgroundTintMode="screen"
     android:backgroundTint="@color/primario"
-    android:background="@drawable/batthern_repeat">
+    android:background="@drawable/res_batthern_repeat">
 
     <!--Cabecera de la Cuenta AKA ToolBar-->
     <!--Relleno del ToolBar-->
@@ -32,7 +32,7 @@
             android:id="@+id/btnCambiarTema"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sort"
+            android:src="@drawable/btn_sort"
             android:background="@color/nulo"
             android:layout_alignParentLeft="true" />
 
@@ -41,7 +41,7 @@
             android:id="@+id/btnCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_exit"
+            android:src="@drawable/btn_exit"
             android:background="@color/nulo"
             android:layout_alignParentRight="true" />
 
@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/cabecera_sombra" />
+        android:background="@drawable/res_cabecera_sombra" />
 
     <!--Botón que simula una entrada de la lista para nuevo Plan-->
     <LinearLayout
@@ -124,7 +124,7 @@
             android:id="@+id/btnCrear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/paper_clip"
+            android:src="@drawable/ui_paper_clip"
             app:maxImageSize="32dp"
             app:borderWidth="0dp"
             android:layout_margin="15dp"

@@ -16,7 +16,7 @@
         <item name="windowActionBar">false</item>
     </style>
     <style name="LaunchScreen" parent="Theme.PlanID">
-        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="android:windowBackground">@drawable/res_launch_screen</item>
     </style>
 
 </resources>

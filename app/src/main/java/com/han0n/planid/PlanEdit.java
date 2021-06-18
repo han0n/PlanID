@@ -97,7 +97,6 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         });
 
         //ACCIÓN del EditText de la Alarma
-
         binding.txtAlarma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,18 +163,11 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
-        binding.chkLunes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-
+        // Inicialización CORRECTA de los checkBox de los DÍAS
         findViewById(R.id.chkLunes).setOnClickListener(this);
         findViewById(R.id.chkMartes).setOnClickListener(this);
-        findViewById(R.id.chkLunes).setOnClickListener(this);
-        findViewById(R.id.chkLunes).setOnClickListener(this);
+        findViewById(R.id.chkMiercoles).setOnClickListener(this);
+        findViewById(R.id.chkJueves).setOnClickListener(this);
         findViewById(R.id.chkViernes).setOnClickListener(this);
         findViewById(R.id.chkSabado).setOnClickListener(this);
         findViewById(R.id.chkDomingo).setOnClickListener(this);
@@ -224,6 +216,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         }
 
     }
+
     // Método para editar Plan: Carga los datos del plan y después lo elimina
     private void editarPlan() {
 
@@ -241,6 +234,46 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
                 minuto_ = "" + dataSnapshot.child("minuto").getValue();
                 minuto = Integer.parseInt(minuto_);
 
+                dias = new ArrayList<>();//Se inicializa, ya está instanciado para toda la clase
+
+                for (DataSnapshot dia : dataSnapshot.child("dias").getChildren()) {
+                    //Log.d("AAA", ""+dia.getValue());
+                    if(dia != null) {
+                        int dia_ = Integer.parseInt(String.valueOf(dia.getValue()));
+
+                        if (dia_ == 2){
+                            dias.add(Calendar.MONDAY);
+                            binding.chkLunes.setChecked(true);
+                        }
+                        if (dia_ == 3){
+                            dias.add(Calendar.TUESDAY);
+                            binding.chkMartes.setChecked(true);
+                        }
+                        if (dia_ == 4){
+                            dias.add(Calendar.WEDNESDAY);
+                            binding.chkMiercoles.setChecked(true);
+                        }
+                        if (dia_ == 5){
+                            dias.add(Calendar.THURSDAY);
+                            binding.chkJueves.setChecked(true);
+                        }
+                        if (dia_ == 6){
+                            dias.add(Calendar.FRIDAY);
+                            binding.chkViernes.setChecked(true);
+                        }
+                        if (dia_ == 7){
+                            dias.add(Calendar.SATURDAY);
+                            binding.chkSabado.setChecked(true);
+                        }
+                        if (dia_ == 1){
+                            dias.add(Calendar.SUNDAY);
+                            binding.chkDomingo.setChecked(true);
+                        }
+                    }
+                }
+
+
+
                 binding.txtActividad.setText(actividad);
                 binding.txtDesc.setText(descripcion);
                 /* Corregido que no se seteasen bien, se deben usar de tipo int + el Locale */
@@ -255,9 +288,10 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
                             .setMinute(minuto)
                             .build();
                     relojSeteado = true;
-                    binding.btnPonerAlarma.setVisibility(View.VISIBLE);
+                    /* No tiene sentido porque al crear una nota se ha seteado una alarma ya */
+                    //binding.btnPonerAlarma.setVisibility(View.VISIBLE);
                     // Se pondrán visibles los chk de los días de la semana si es una Nota editada
-                    //binding.chkDias.setVisibility(View.VISIBLE);//**CRASHEA LA APP, REVISAR**
+                    binding.chkDias.setVisibility(View.VISIBLE);//**YA SE PASAN LOS DÍAS AL EDITAR**
 
                 }else{
                     relojSeteado = false;
@@ -300,6 +334,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         valores.put("hora", hora);
         valores.put("minuto", minuto);
         valores.put("uid", ""+firebaseAuth.getUid());
+        valores.put("dias", dias);
 
         // Añadiendo a la BD
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("notas");
