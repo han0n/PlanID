@@ -35,4 +35,6 @@
     <string name="S">S</string>
     <string name="D">D</string>
     <string name="compartir_con">Compartir con</string>
+    <string name="sin_contenido">La nota está vacía</string>
+    <string name="actividad_rapida">actividad rápida</string>
 </resources>

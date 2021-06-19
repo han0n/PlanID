@@ -90,6 +90,18 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
             public void onClick(View v) {
                 if(binding.txtActividadRapida.getText().toString().isEmpty())
                     startActivity(new Intent(Listado.this, PlanEdit.class));
+                else {
+                    crearNotaRapida();
+                    binding.txtActividadRapida.setText("");
+                    /* Se cierra el teclado */
+                    if (v != null) {
+                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+                }
+                // Para ambos casos se limpia el foco al EditText txtActividadRapida
+                binding.txtActividadRapida.clearFocus();
             }
         });
 
@@ -104,21 +116,8 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                     crearNotaRapida();
                     v.setText("");// **OJO** Después de crear la nota
                 }
-                // Si se pulsa hacia atrás/abajo: **FALTA IMPLEMENTARLO**
 
                 return false;
-            }
-        });
-
-        // ACCIÓN de PULSAR al ENTER al meter Texto en txtActividadRapida
-        //***IMPRESCINDIBLE QUE TENGA: En su OnEditorActionListener() un desfocalizador
-        binding.txtActividadRapida.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    binding.btnCrear.setVisibility(View.GONE);
-                else
-                    binding.btnCrear.setVisibility(View.VISIBLE);
             }
         });
 

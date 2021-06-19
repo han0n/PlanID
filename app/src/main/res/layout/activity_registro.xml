@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registro"
-    android:backgroundTint="@color/fondo"
+    android:backgroundTint="@color/primario_variante"
     android:background="@drawable/res_batthern_repeat">
 
     <!--Sombra del ToolBar-->
@@ -72,9 +72,12 @@
                 android:id="@+id/campoNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/hint_person"
                 app:counterEnabled="true"
-                app:counterMaxLength="12">
+                app:counterMaxLength="12"
+                android:gravity="center">
+
                 <EditText
                     android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
@@ -82,8 +85,8 @@
                     android:background="@color/nulo"
                     android:hint="@string/nombre"
                     android:inputType="textPersonName"
-                    android:layout_marginBottom="-10dp"
-                    android:maxLength="12"/>
+                    android:maxLength="12"
+                    android:layout_marginBottom="-18dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,6 +95,7 @@
                 android:id="@+id/campoEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
                 android:layout_below="@+id/campoNombre"
                 app:startIconDrawable="@drawable/hint_email">
                 <EditText

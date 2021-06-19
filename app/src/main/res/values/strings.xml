@@ -35,4 +35,6 @@
     <string name="S">S</string>
     <string name="D">U</string>
     <string name="compartir_con">Share with</string>
+    <string name="sin_contenido">Note is empty</string>
+    <string name="actividad_rapida">quick activity</string>
 </resources>

@@ -189,7 +189,7 @@
         android:id="@+id/barraSetteo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="70dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_above="@+id/finHoja"
@@ -244,6 +244,16 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <!--Fecha de la última modificación-->
+    <TextView
+        android:id="@+id/txtFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/finHoja"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"/>
 
     <!--Cabecera de la Cuenta AKA ToolBar-->
     <!--Sombra del ToolBar-->

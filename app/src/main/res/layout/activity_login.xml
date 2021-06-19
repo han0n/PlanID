@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:backgroundTint="@color/fondo"
+    android:backgroundTint="@color/primario_variante"
     android:background="@drawable/res_batthern_repeat">
 
     <!--Sombra del ToolBar-->
@@ -116,6 +116,34 @@
 
         </RelativeLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/campoInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:focusable="false">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ui_murgi"
+            android:background="@null"
+            android:layout_margin="10dp"
+            android:rotation="-25"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ui_approved"
+            android:background="@null"
+            android:layout_margin="10dp"
+            android:translationX="-2.5dp"
+            android:translationY="5dp"/>
+
+    </RelativeLayout>
+
 
 
 

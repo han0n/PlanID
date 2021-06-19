@@ -138,7 +138,7 @@
             app:startIconDrawable="@drawable/hint_create"
             app:counterMaxLength="30"
             app:counterEnabled="true"
-            android:hint="actividad rápida"
+            android:hint="@string/actividad_rapida"
             android:gravity="center">
         <EditText
             android:id="@+id/txtActividadRapida"

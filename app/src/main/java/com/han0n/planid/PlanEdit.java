@@ -37,6 +37,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.han0n.planid.databinding.ActivityPlanBinding;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -62,7 +64,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
     boolean relojSeteado;
 
     // Para setear los días que se pondrá la alarma
-    public ArrayList<Integer> dias;
+    public ArrayList<Integer> dias = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,8 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         binding.btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //if (planId_ == null) { validarDatos(); }
+                //else { comprobarIgualdad(); }// Comprueba si ha habido cambios en la edición
                 validarDatos();
             }
         });
@@ -124,7 +128,8 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
                         binding.btnPonerAlarma.setVisibility(View.VISIBLE);
                         //Se hace visible el selector de días
                         binding.chkDias.setVisibility((View.VISIBLE));
-                        dias = new ArrayList<>();//Se inicializa, ya está instanciado para toda la clase
+                        if (dias.isEmpty())// **SE CREAN SI NO SE HAN RECUPERADO DE UNA YA CREADA**
+                            dias = new ArrayList<>();//Se inicializa, ya está instanciado para toda la clase
 
                     }
                 });
@@ -139,6 +144,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
+        //ACCIÓN del Botón de PONER ALARMA (sale cuando se establece la hora)
         binding.btnPonerAlarma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,9 +163,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         binding.btnWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mensaje = "*" + binding.txtActividad.getText().toString() + "*" +
-                        "\n_" + binding.txtDesc.getText().toString() + "_";
-                enviarWhats(mensaje);
+                validarWhats();
             }
         });
 
@@ -173,6 +177,25 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         findViewById(R.id.chkDomingo).setOnClickListener(this);
 
     }// Método onCreate
+
+    /* Método que comprueba si la nota tiene contenido y según cual, lo envia con tal formato */
+    private void validarWhats() {
+        actividad = binding.txtActividad.getText().toString().trim();
+        descripcion = binding.txtDesc.getText().toString().trim();
+
+        if (TextUtils.isEmpty(actividad)){// Si no tiene actividad, no la envia y salta toast
+            Toast.makeText(this, R.string.sin_contenido, Toast.LENGTH_SHORT).show();
+        }else{
+
+            if(TextUtils.isEmpty(descripcion)){// Si tiene solo actividad, envía esta
+                String mensaje = "*" + actividad + "*";
+                enviarWhats(mensaje);
+            }else{// Si tiene actividad y descripción, PERFECT
+                String mensaje = "*" + actividad + "*" + "\n_" + descripcion + "_";
+                enviarWhats(mensaje);
+            }
+        }
+    }
 
     /* Método que comprueba si está instalado WhatsApp y envia mensaje*/
     private void enviarWhats(String mensaje) {
@@ -278,6 +301,15 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
                 binding.txtDesc.setText(descripcion);
                 /* Corregido que no se seteasen bien, se deben usar de tipo int + el Locale */
                 String hMFormato = String.format(Locale.getDefault(),"%02d : %02d", hora, minuto);
+
+                // La fecha está en el timestamp que se guarda en el id de la nota
+                String sId = "" + dataSnapshot.child("id").getValue();
+                long id = Long.parseLong(sId);
+
+                SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                //fecha.format(new Date(id)); //Forma en la que se le da el formato
+                binding.txtFecha.setText(fecha.format(new Date(id)));
+
 
                 if(hora!=25 && minuto!=60) {// Valores que se guardan por defecto cuando NO se selecciona
                     binding.campoAlarma.setHint(hMFormato);// Se setea al Hint del campo Alarma
