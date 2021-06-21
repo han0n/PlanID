@@ -1,0 +1,10 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:autoAdvanceViewId="@id/widgetStackView"
+    android:minWidth="150dp"
+    android:minHeight="150dp"
+    android:minResizeHeight="110dp"
+    android:updatePeriodMillis="360000"
+    android:initialLayout="@layout/widget_listado"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen">
+</appwidget-provider>

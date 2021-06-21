@@ -220,7 +220,7 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-
+    /* Método usado para cuando el usuario introduce una hora */
     public void establecerAlarma(String mensaje, int hora, int minuto){
 
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
@@ -237,7 +237,6 @@ public class PlanEdit extends AppCompatActivity implements View.OnClickListener 
         if(intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
         }
-
     }
 
     // Método para editar Plan: Carga los datos del plan y después lo elimina

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registro"
+    tools:context=".acceso.Registro"
     android:backgroundTint="@color/primario_variante"
     android:background="@drawable/res_batthern_repeat">
 

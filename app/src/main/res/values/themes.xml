@@ -21,7 +21,7 @@
 
         <item name="textInputStyle">@style/Widget.PlanID.TextInputLayout</item>
     </style>
-
+    <!--Estilo del Layout de la entrada de texto (ya no se presentan con el bordeado)-->
     <style name="Widget.PlanID.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>

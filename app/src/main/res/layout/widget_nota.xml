@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="180dp"
+    android:weightSum="2"
+    android:id="@+id/widgetNota"
+    android:layout_height="180dp"
+    android:background="@color/fondo">
+
+    <TextView
+        android:id="@+id/widgetTxtNota"
+        android:layout_width="0dp"
+        android:layout_marginLeft="12.5dp"
+        android:layout_marginRight="12.5dp"
+        android:textSize="14sp"
+        android:gravity="start"
+        android:layout_weight="2"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

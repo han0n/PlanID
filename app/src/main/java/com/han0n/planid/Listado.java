@@ -14,29 +14,29 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.han0n.planid.acceso.Login;
 import com.han0n.planid.databinding.ActivityListadoBinding;
+import com.han0n.planid.datos.NotaADPT;
+import com.han0n.planid.datos.NotaMDL;
+import com.han0n.planid.datos.RecycleViewClickInterface;
+import com.han0n.planid.widget.NotaProvider;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Objects;
 
-public class Listado extends AppCompatActivity implements RecycleViewClickInterface{
+public class Listado extends AppCompatActivity implements RecycleViewClickInterface {
 
     private ActivityListadoBinding binding;
 
@@ -45,7 +45,7 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
     private FirebaseAuth firebaseAuth;
 
     //Array para cargar las notas y su Adaptador
-    private ArrayList<NotaMDL> notaArrayList;
+    public static ArrayList<NotaMDL> notaArrayList;
     private NotaADPT notaADPT;
     private String cuentaUid;
 
@@ -122,9 +122,12 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
         });
 
         // DESLIZAR para borrar
-        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT |ItemTouchHelper.LEFT) {
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.RIGHT |ItemTouchHelper.LEFT) {
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
             @Override
@@ -177,6 +180,7 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
             subidaFirebase();
     }
 
+    // Para la Nota rápida
     private void subidaFirebase() {
 
         HashMap<String, Object> valores = new HashMap<>();
@@ -187,7 +191,7 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
         valores.put("actividad", actividad);
         valores.put("uid", ""+firebaseAuth.getUid());
 
-        /* Deben de suirse con estos campos como cadenas sin contenido porque se usan en NotaADPT: */
+        /* Deben de suirse con estos campos como cadenas sin contenido porque se usan en NotaADPT:*/
         valores.put("descripcion", "");
         valores.put("hora", 25);
         valores.put("minuto", 60);
@@ -200,7 +204,8 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                     @Override// Si se añade sin problemas la nota...
                     public void onSuccess(Void aVoid) {
 
-                        Toast.makeText(Listado.this, R.string.nota_creada, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Listado.this, R.string.nota_creada,
+                                Toast.LENGTH_SHORT).show();
 
                         //startActivity(new Intent(PlanEdit.this, Listado.class));
                         //finish();
@@ -209,7 +214,8 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Listado.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(Listado.this, ""+e.getMessage(),
+                                Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -226,7 +232,7 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                 notaArrayList.clear();
                 for (DataSnapshot ds: snapshot.getChildren()){
                     // OBTIENE el uid de todas las notas:
-                    String uid = ds.getValue(NotaMDL.class).uid;
+                    String uid = ds.getValue(NotaMDL.class).getUid();
                     /* Si el uid de las notas es igual al de la Cuenta Actual (cuentaUid)*/
                     if(uid.equals(cuentaUid)){
                         // OBTIENE sus notas:
@@ -240,9 +246,13 @@ public class Listado extends AppCompatActivity implements RecycleViewClickInterf
                 Collections.reverse(notaArrayList);
 
                 // SETTEA el Adaptador
-                notaADPT = new NotaADPT(Listado.this, notaArrayList, Listado.this);
+                notaADPT = new NotaADPT(Listado.this, notaArrayList,
+                        Listado.this);
                 // SETTEAMOS al recycleview
                 binding.recNotas.setAdapter(notaADPT);
+
+                //AGREGAMOS las Notas al ArrayList del widget con su Método:
+                NotaProvider.setNotasWidget(notaArrayList);
 
             }
 

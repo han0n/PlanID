@@ -1,4 +1,4 @@
-package com.han0n.planid;
+package com.han0n.planid.datos;
 
 public class NotaMDL {
 
@@ -10,7 +10,9 @@ public class NotaMDL {
     public NotaMDL(){}
 
     /* parametrizado */
-    public NotaMDL(long timestamp, long id, String uid, String actividad, String descripcion, int hora, int minuto) {
+    public NotaMDL(long timestamp, long id, String uid, String actividad, String descripcion,
+                   int hora, int minuto) {
+
         this.timestamp = timestamp;
         this.id = id;
         this.uid = uid;
@@ -20,6 +22,7 @@ public class NotaMDL {
         this.minuto = minuto;
 
     }
+
     /* getters y setters */
     public long getTimestamp() {
         return timestamp;

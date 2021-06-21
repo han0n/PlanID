@@ -1,6 +1,5 @@
-package com.han0n.planid;
+package com.han0n.planid.acceso;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -17,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.han0n.planid.Listado;
+import com.han0n.planid.R;
 import com.han0n.planid.databinding.ActivityRegistroBinding;
 
 import java.util.HashMap;

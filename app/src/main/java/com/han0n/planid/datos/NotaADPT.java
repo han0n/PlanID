@@ -1,10 +1,9 @@
-package com.han0n.planid;
+package com.han0n.planid.datos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.han0n.planid.databinding.CardviewNotaBinding;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
 
@@ -67,7 +65,8 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
             descripcion = modelo.getDescripcion().substring(0, ultimoEspacio+1);
 
             if(descripcionFull.length()<88) {// Si la segunda parte de texto no tiene más de 88-4 chars
-                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1, descripcionFull.length());
+                descripcion_ = modelo.getDescripcion()
+                        .substring(ultimoEspacio+1, descripcionFull.length());
 
             }else{// Los puntos suspensivos y el espacio último también cuentan... 88-4 chars
                 //el doble de 44 = a este 88
@@ -75,7 +74,8 @@ public class NotaADPT extends RecyclerView.Adapter<NotaADPT.HolderNota>{
                 descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1, 84);
 
                 int ultimoEspacio_ = descripcion_.lastIndexOf(" ");
-                descripcion_ = modelo.getDescripcion().substring(ultimoEspacio+1 , ultimoEspacio_+1+ultimoEspacio+1) + "...";
+                descripcion_ = modelo.getDescripcion()
+                        .substring(ultimoEspacio+1 , ultimoEspacio_+1+ultimoEspacio+1) + "...";
             }
 
         }else{

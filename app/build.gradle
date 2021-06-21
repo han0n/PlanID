@@ -18,8 +18,8 @@ android {
         applicationId "com.han0n.planid"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 3
-        versionName "3.0"
+        versionCode 5
+        versionName "2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

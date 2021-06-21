@@ -37,4 +37,7 @@
     <string name="compartir_con">Share with</string>
     <string name="sin_contenido">Note is empty</string>
     <string name="actividad_rapida">quick activity</string>
+    <string name="widget_cargando">Loading notes</string>
+    <string name="widget_eliminado">Notes removed successfully</string>
+    <string name="widget_sin_notas">There are not notes to show</string>
 </resources>

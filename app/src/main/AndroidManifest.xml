@@ -30,9 +30,9 @@
         </activity>
         <activity android:name=".Listado"
             android:launchMode="singleInstance"/><!--Solo habrá una instancia al crear nota-->
-        <activity android:name=".Registro" />
+        <activity android:name=".acceso.Registro" />
         <activity
-            android:name=".Login"
+            android:name=".acceso.Login"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/LaunchScreen"> <!-- Pantalla con el logo de la App -->
             <intent-filter>
@@ -41,6 +41,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--A partir de aquí los permisos para el Widget-->
+        <receiver android:name=".widget.NotaConfig">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+        <service android:name=".widget.NotaService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <!--Fin de los permisos para el Widget-->
+
+
     </application>
 
 </manifest>

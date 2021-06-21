@@ -1,6 +1,5 @@
-package com.han0n.planid;
+package com.han0n.planid.acceso;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -16,6 +15,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.han0n.planid.Listado;
+import com.han0n.planid.R;
 import com.han0n.planid.databinding.ActivityLoginBinding;
 
 public class Login extends AppCompatActivity {
@@ -96,7 +97,8 @@ public class Login extends AppCompatActivity {
                     @Override// NO se ha loggrado hacer LOGIN
                     public void onFailure(Exception e) {
                         alerta.dismiss();
-                        Toast.makeText(Login.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this, ""+e.getMessage(),
+                                Toast.LENGTH_LONG).show();
                     }
                 });
     }
